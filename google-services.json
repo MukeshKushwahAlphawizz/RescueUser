@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "646728567449",
+    "firebase_url": "https://reacueanycar.firebaseio.com",
+    "project_id": "reacueanycar",
+    "storage_bucket": "reacueanycar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646728567449:android:23de0c3b20a9c3dd808608",
+        "android_client_info": {
+          "package_name": "com.alpha.rescuedriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646728567449-qpss34qt2rsdjk4mocpvthd37qenrg6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alpha.rescuedriver",
+            "certificate_hash": "8ecd9fe364f7eb44c49ee4862eb34fee70e1516e"
+          }
+        },
+        {
+          "client_id": "646728567449-k9nj4v4d3la72q274g2g8qklng86f45k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK2ECJ3hpb6k28eWREWIuRi2rYhqTImp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646728567449-k9nj4v4d3la72q274g2g8qklng86f45k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "646728567449-gogd06hopjmn69vseuuk0m8vtcmu3mgb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alpha.rescuedriver"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646728567449:android:dd710eb92d250ea7808608",
+        "android_client_info": {
+          "package_name": "com.alpha.rescueuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646728567449-sm127dume5eqbejaut42u7h4n02j7v9t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alpha.rescueuser",
+            "certificate_hash": "8ecd9fe364f7eb44c49ee4862eb34fee70e1516e"
+          }
+        },
+        {
+          "client_id": "646728567449-k9nj4v4d3la72q274g2g8qklng86f45k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK2ECJ3hpb6k28eWREWIuRi2rYhqTImp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646728567449-k9nj4v4d3la72q274g2g8qklng86f45k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "646728567449-gogd06hopjmn69vseuuk0m8vtcmu3mgb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alpha.rescuedriver"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

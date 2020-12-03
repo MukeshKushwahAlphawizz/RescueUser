@@ -1,0 +1,66 @@
+<ion-header class="top-header">
+  <ion-navbar>
+    <ion-buttons no-margin left class="drover_icn">
+      <button padding no-margin ion-button icon-only menuToggle>
+        <!-- <ion-icon class="text-white" name="md-menu"></ion-icon> -->
+        <img src="assets/img/menu_icon.png">
+      </button>
+    </ion-buttons>
+    <ion-buttons right class="notification_icn" (click)="notification()">
+      <button ion-button icon-only light class="text-white">
+        <img src="assets/img/notifications.png">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  </ion-header>
+<ion-content class="tracking_box">
+  <div #map id="map" style="height:100%"></div>
+  <div margin-top class="tracking_content">
+    <div *ngIf="!showTruckBox" class="location_box">
+      <ion-card  class="redius-15">
+        <ion-item>
+          <div class="green_dot" item-start></div>
+          <div class="small-text ">Pickup From</div>
+          <input [(ngModel)]="source" (input)='onChangeLocation($event.target.value)' placeholder="Pickup Location" type="text" class="Vehicle_no big-text text-black bold">
+        </ion-item>
+        <div class="location-option" *ngFor="let item of this.autocompleteItemsSearch" tappable
+             (click)="chooseItemSource(item)">
+          <div>{{item.description}}</div>
+        </div>
+      </ion-card>
+      <ion-card class="redius-15 drop_location">
+        <ion-item>
+          <div class="red_dot" item-start></div>
+          <div class="small-text ">Drop Location</div>
+          <input [(ngModel)]="destination" (input)='onChangeLocationDrop($event.target.value)' placeholder="Drop Location" type="text" class="Vehicle_no big-text text-black bold">
+        </ion-item>
+        <div class="location-option" *ngFor="let item of this.autocompleteItemsSearchDrop" tappable
+             (click)="chooseItemSourceDrop(item)">
+          <div>{{item.description}}</div>
+        </div>
+      </ion-card>
+    </div>
+    <div *ngIf="showTruckBox" class="truck_box">
+        <ion-item *ngFor="let item of vehicleList" (click)="selectTruck(item)" [ngClass]="item.isSelect?'selected-bg':''" no-lines class="transparent">
+          <ion-thumbnail item-start>
+            <img src="assets/img/tow-icn.png">
+          </ion-thumbnail>
+          <div class="big-text text-black"> {{item.name}}</div>
+          <div class="small-text ">Weight :{{item.weight}}</div>
+          <div class="medium-bold" item-end><h2>${{item.amount}}</h2></div>
+        </ion-item>
+      <!--<ion-item *ngFor="let item of vehicleList" (click)="selectTruck(item)" [ngClass]="item.isSelect?'selected-bg':''" no-lines class="transparent">
+        <ion-thumbnail item-start>
+          <img src="assets/img/tow-icn.png">
+        </ion-thumbnail>
+        <div class="big-text text-black"> {{item.name}}</div>
+        <div class="small-text ">Weight :{{item.weight}}</div>
+        <div class="medium-bold" item-end><h2>${{item.amount}}</h2></div>
+      </ion-item>-->
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <button *ngIf="!showTruckBox" no-margin ion-button full class="purple_bg" (click)="request()">Send Request</button>
+  <button *ngIf="showTruckBox" no-margin ion-button full class="purple_bg" (click)="confirm()">Confirm</button>
+</ion-footer>

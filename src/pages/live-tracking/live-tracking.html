@@ -1,0 +1,76 @@
+
+<ion-header class="top-header">
+  <ion-navbar>
+      <ion-buttons no-margin left class="drover_icn">
+          <button no-margin ion-button icon-only menuToggle>
+              <!-- <ion-icon class="text-white" name="md-menu"></ion-icon> -->
+              <img src="assets/img/menu_icon.png">
+          </button>
+      </ion-buttons>
+      <ion-title text-center>Live Tracking</ion-title>
+      <ion-buttons right class="notification_icn" (click)="notification()">
+          <button ion-button icon-only light class="text-white">
+              <img src="assets/img/notifications.png">       
+          </button>
+      </ion-buttons> 
+    
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tracking_box">
+
+      <div #map id="map" style="height:100%"></div>
+
+      <div margin-top class="tracking_content">
+
+        <div class="location_box">
+
+          <ion-item no-line class="transparent">
+              <ion-avatar item-start>
+                  <img src="assets/img/chat_prfl.png">
+                </ion-avatar>
+            <h2 class="big-text">Abhishek Nigam  <ion-icon name="md-call" class="text-white"></ion-icon></h2>
+            <div item-end>
+              <div class="small-text">Vehicle No.</div>  
+              <div class="medium-text text-black">Mp 0954225</div> 
+            </div>
+               
+          </ion-item> 
+
+          <ion-grid class="grid_list">
+              <ion-row>
+                <ion-col col-3 class="right-line">
+                    <div class="small-text">Arriving In</div>  
+                    <div class="medium-text text-black">3 MIn</div> 
+                </ion-col>
+                <ion-col col-3 class="right-line">
+                    <div class="small-text">Distance.</div>  
+                    <div class="medium-text text-black">06 Km</div> 
+                </ion-col>
+                <ion-col col-3 class="right-line">
+                    <div class="small-text">Time</div>  
+                    <div class="medium-text text-black">15 - 20 Min</div> 
+                </ion-col>
+                <ion-col col-3 class="price_box">
+                    <div class="small-text text-black">Total Price.</div>  
+                    <div class="medium-text text-black"><h4 no-margin>$60</h4></div> 
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+
+        </div>
+        
+        
+
+        <div text-center class="signin-btn">
+          <button no-margin ion-button full class="purple_bg chat_btn no-shadow capitalize" (click)="chat()">Start Chat</button>                      
+          <button no-margin ion-button full class="purple_bg no-shadow" (click)="payment()">Pay now</button>                      
+        </div>
+        
+      </div>
+      
+      
+
+
+</ion-content>

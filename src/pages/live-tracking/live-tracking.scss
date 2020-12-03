@@ -1,0 +1,57 @@
+page-live-tracking {    
+    .tracking_content {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }  
+    button.purple_bg {
+        min-height: 4.7rem;
+    }
+    button.purple_bg.chat_btn {
+        background: #529762;
+    }
+    .signin-btn button {
+        width: 50%;
+        float: left;
+    }
+    .location_box{
+        background-image: url(../assets/img/curve_bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding:20px 27px 20px;
+        position: relative;
+        bottom: -15px;
+    }           
+    .location_box img {
+        box-shadow: 0px 1px 10px #a8a8a8;
+    }
+    .location_box .item .item-inner {
+        padding-right: 0px;
+        border: none;
+    }        
+    .location_box h2 .icon {
+        background: #529762;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 31px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+    }
+    .location_box .item {
+        padding-left: 5px;
+    }    
+    .right-line{
+        border-right:1px solid #E5E5E5;
+        margin-bottom: 10px;
+    }
+    .small-text {
+        color: #747474;
+    }       
+    .medium-text {
+        font-size: 1.2rem;
+    }      
+    h2.big-text {
+        font-size: 1.5rem;
+    }
+}

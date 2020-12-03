@@ -1,0 +1,77 @@
+<ion-header class="top-header">
+  <ion-navbar>
+    <ion-title text-center>Summary</ion-title>
+    <ion-buttons right class="hide_icn">
+      <button ion-button icon-only light class="text-white">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content margin-top>
+  <ion-list margin-top class="details_list transparent">
+    <ion-card class="transparent">
+      <h2 text-center class="semi-bold">Summary</h2>
+      <ion-item class="transparent">
+        <div item-start class="text-grey small-text">
+          <span>Total Fare Amount</span>
+        </div>
+        <div item-end class="price_box">
+          <h4 class="big-text">${{summaryData.amount?summaryData.amount:''}}</h4>
+        </div>
+      </ion-item>
+      <ion-item  class="round_bg transparent">
+        <h2>Your Car Details</h2>
+        <div margin-left>
+          <p>Make : {{userData.make?userData.make:''}}</p>
+          <p>Model : {{userData.model_no?userData.model_no:''}}</p>
+          <p>Colour : {{userData.colour?userData.colour:''}}</p>
+          <p>Engine Number : {{userData.engine_number?userData.engine_number:''}}</p>
+          <!--<p>Chachis no : CA8525GG</p>-->
+          <p>Weight : {{userData.weight?userData.weight:''}}</p>
+          <!--<p>Tyre No: 165/80 R14 85T</p>-->
+        </div>
+      </ion-item>
+
+      <ion-item class="transparent">
+        <div item-start>
+          <span class="text-grey small-text">Time</span>
+          <h5>{{summaryData.pick_time?summaryData.pick_time:''}}</h5>
+        </div>
+        <div item-end text-right>
+          <span class="text-grey small-text">Distance</span>
+          <h5>{{summaryData.distance?summaryData.distance:''}}</h5>
+        </div>
+      </ion-item>
+
+      <ion-item class="transparent">
+        <div item-start>
+          <span class="text-grey small-text">Day</span>
+          <h5>{{summaryData.pick_date?summaryData.pick_date:''}}</h5>
+        </div>
+        <div item-end text-right>
+          <span class="text-grey small-text">Total</span>
+          <h5>{{summaryData.total_time?summaryData.total_time:''}}</h5>
+        </div>
+      </ion-item>
+
+      <div class="location_img">
+        <img src="assets/img/location.png">
+      </div>
+      <ion-item class="transparent address_box" no-border>
+        <div item-start text-canter>
+          <span class="text-grey small-text">Start</span>
+          <span style="width: 165px" class="text-grey small-text">{{summaryData.pick_location?summaryData.pick_location:''}}</span>
+        </div>
+        <div item-end text-right text-canter>
+          <span class="text-grey small-text">End </span>
+          <span class="text-grey small-text">{{summaryData.drop_location?summaryData.drop_location:''}}</span>
+        </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+  <div>
+    <button ion-button full margin-bottom class="purple_bg" (click)="sendRequest()">Send request</button>
+  </div>
+</ion-content>

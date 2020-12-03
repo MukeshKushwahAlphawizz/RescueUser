@@ -1,0 +1,49 @@
+<ion-header class="top-header">
+  <ion-navbar>
+    <ion-buttons no-margin left class="drover_icn">
+      <button  no-margin ion-button icon-only menuToggle>
+        <img src="assets/img/menu_icon.png">
+      </button>
+    </ion-buttons>
+
+    <ion-title text-center>My History</ion-title>
+
+    <ion-buttons right class="notification_icn" (click)="notificaion()">
+      <button ion-button icon-only light class="text-white">
+        <img src="assets/img/notifications.png">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content  class="list-avatar-page driver_list main-bg">
+  <div text-center margin-top class="bold big-text" *ngIf="isListEmpty">No pending jobs are available</div>
+  <div *ngIf="!isListEmpty">
+    <ion-list>
+      <div *ngFor="let item of historyList" class="history_list">
+        <ion-row>
+          <ion-col col-2 no-padding>
+            <ion-thumbnail>
+              <img src="assets/img/dummy_pic.png">
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col col-10 no-padding>
+            <ion-item class="btn_box">
+              <h2 item-start>Date : {{item.pick_date}}</h2>
+              <span item-end class="medium-bold">Time Left :  {{item.time_left}}</span>
+            </ion-item>
+            <div padding-left text-wrap>
+              <span item-start>Pickup Location : <b>{{item.pick_location}}</b></span>
+            </div>
+            <div padding-left text-wrap>
+              <span item-start>Drop Location : <b>{{item.drop_location}}</b></span>
+            </div>
+            <ion-item class="btn_box">
+              <button small item-end ion-button round  class="Chatnow_btn no-shadow" (click)="chat()">Chat Now </button>
+              <button small item-end ion-button round class="tracking_btn no-shadow" (click)="Tracking()">Start Tracking</button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    </div>
+  </ion-list>
+  </div>
+</ion-content>

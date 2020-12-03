@@ -1,0 +1,69 @@
+
+<ion-header class="top-header">
+    <ion-navbar>
+        <ion-buttons no-margin left class="drover_icn">
+            <button no-margin ion-button icon-only menuToggle>
+                <!-- <ion-icon class="text-white" name="md-menu"></ion-icon> -->
+                <img src="assets/img/menu_icon.png">
+            </button>
+        </ion-buttons>
+
+        <ion-buttons right class="notification_icn" (click)="notification()">
+          <button ion-button icon-only light class="text-white">
+              <img src="assets/img/notifications.png">
+          </button>
+      </ion-buttons>
+
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content class="tracking_box">
+
+        <div #map id="map" style="height:100%"></div>
+
+        <div margin-top class="tracking_content">
+
+          <div class="location_box">
+            <ion-card  class="no-shadow">
+              <ion-item>
+                  <ion-thumbnail item-start>
+                    <img src="assets/img/tow-icn.png">
+                  </ion-thumbnail>
+                  <div class="big-text text-black"> Mini Tow Truck</div>
+                  <div class="small-text ">Weight : 3.5 ton</div>
+                  <div class="medium-bold" item-end><h2>$61</h2></div>
+                </ion-item>
+                <ion-item>
+                    <ion-thumbnail item-start>
+                      <img src="assets/img/tow-icn.png">
+                    </ion-thumbnail>
+                    <div class="big-text text-black">Tow Truck</div>
+                    <div class="small-text ">Weight : 7.5 ton</div>
+                    <div class="medium-bold" item-end><h2>$63</h2></div>
+                  </ion-item>
+                  <ion-item>
+                      <ion-thumbnail item-start>
+                        <img src="assets/img/tow-icn.png">
+                      </ion-thumbnail>
+                      <div class="big-text text-black">Big Tow Truck</div>
+                      <div class="small-text ">Weight : 12 ton</div>
+                      <div class="medium-bold" item-end><h2>$60</h2></div>
+                    </ion-item>
+            </ion-card>
+
+            <!-- <ion-card class="redius-15 drop_location">
+              <ion-item>
+                <div class="red_dot" item-start></div>
+                <div class="small-text ">Drop Location</div>
+                <input type="text" class="Vehicle_no big-text text-black bold" value="7 noorani nagar">
+              </ion-item>
+            </ion-card> -->
+          </div>
+
+            <button no-margin ion-button full class="purple_bg" (click)="request()">Confirm</button>
+        </div>
+
+
+
+
+  </ion-content>

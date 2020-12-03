@@ -1,0 +1,36 @@
+page-login {
+    img.logo {
+        width: 60%;
+        margin: 4rem 0rem;    
+    }      
+    .main-bg .transparent .item-inner {
+        border-bottom: 1px solid #AFAFAF;
+    } 
+    .item-input .label {
+        color: #000;
+        font-size: 1.4rem;
+        line-height: 0px;
+    }         
+    .signin-btn {
+        margin:4rem 1rem 0rem;
+    }    
+    .text-purple {
+        margin-right: 1rem;
+    }        
+    img.hand_img {
+        width: 20px;
+        margin-left: 10px;
+    }
+    .purple_bg {
+        min-height: 4.4rem;
+    }
+    .invalid {
+        border-bottom: 1px solid #FF6153;
+        }
+        .errorMessage
+        {
+            color: red;
+            font-size: 10px;
+            margin-left: 20px;
+        }
+}

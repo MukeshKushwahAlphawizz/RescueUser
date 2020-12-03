@@ -1,0 +1,66 @@
+<ion-header class="top-header">
+  <ion-navbar>
+    <ion-title text-center>Fill Details</ion-title>
+    <ion-buttons right class="notification_icn" (click)="notification()">
+      <button ion-button icon-only light class="text-white">
+        <img src="assets/img/notifications.png">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content margin-top class="main-bg fill_details">
+  <ion-list padding-left padding-right class="details_list transparent">
+    <div class="location_img">
+      <img src="assets/img/location.png">
+    </div>
+    <ion-item no-padding class="transparent address_box" no-border>
+      <div item-start text-canter>
+        <span class="text-grey medium-text">Start</span>
+        <span style="width: 165px;" class="text-grey medium-text">{{source}}</span>
+        <span margin-top class="text-grey medium-text edit_location"> <ion-icon class="text-purple" name="md-create"></ion-icon> Edit</span>
+      </div>
+      <div item-end text-right text-canter>
+        <span class="text-grey small-text">End </span>
+        <span class="text-grey small-text">{{destination}}</span>
+        <span margin-top class="text-grey medium-text edit_location"> <ion-icon class="text-purple" name="md-create"></ion-icon> Edit</span>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item class="round_bg">
+      <ion-thumbnail item-start>
+        <img src="assets/img/car-img.png">
+      </ion-thumbnail>
+      <h2 margin-bottom>Your Car Details</h2>
+      <p>Make : {{userData.make?userData.make:''}}</p>
+      <p>Model : {{userData.model_no?userData.model_no:''}}</p>
+      <p>Colour : {{userData.colour?userData.colour:''}}</p>
+      <p>Engine Number : {{userData.engine_number?userData.engine_number:'Not Available'}}</p>
+      <!--<p>Chachis no : CA8525GG</p>-->
+      <p>Weight : {{userData.weight?userData.weight:''}}</p>
+      <!--<p>Tyre No: 165/80 R14 85T</p>-->
+    </ion-item>
+  </ion-list>
+
+  <ion-list margin padding-left padding-right padding-bottom>
+    <ion-item no-padding class="Pickup-letert transparent">
+      <ion-label>Pickup Later</ion-label>
+      <ion-toggle [(ngModel)]="isPickupLater" checked="false"></ion-toggle>
+    </ion-item>
+    <div *ngIf="isPickupLater">
+      <ion-item no-padding class="transparent date_field">
+        <ion-input [(ngModel)]="requestData.pick_date" type="date" placeholder="Select Date"></ion-input>
+      </ion-item>
+      <ion-item no-padding class="transparent time_field">
+        <ion-input [(ngModel)]="requestData.pick_time" type="time" placeholder="Select Time"></ion-input>
+      </ion-item>
+    </div>
+  </ion-list>
+  <!--<div padding-top margin-top margin-bottom>
+    <button no-margin ion-button full class="purple_bg" (click)="confirm()">Confirm</button>
+  </div>-->
+</ion-content>
+<ion-footer>
+  <button no-margin ion-button full class="purple_bg" (click)="confirm()">Confirm</button>
+</ion-footer>

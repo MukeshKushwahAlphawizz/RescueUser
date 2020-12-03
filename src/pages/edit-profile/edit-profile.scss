@@ -1,0 +1,45 @@
+page-edit-profile {
+    img.user {
+        width: 85px;
+        height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .user_profile {
+        position: relative;
+        width: 105px;
+        margin: 3rem auto 1rem;
+    }
+    img.edit_profile {
+        position: absolute;
+        width: 35px;
+        right: 5px;
+        top: 0px;
+    }
+    .main-bg .transparent .item-inner {
+        border-bottom: 1px solid #AFAFAF;
+    }
+    .main-bg .transparent .item-inner input::placeholder{
+        color: #000;
+        font-size: 1.4rem;
+    }
+    .transparent .text-purple {
+        font-size: 2rem;
+        margin: 0px;
+        line-height: 30px;
+    }
+    button.purple_bg {
+        min-height: 4.7rem;
+    }
+    .signin-btn button {
+        width: 50%;
+        float: left;
+    }
+    .signin-btn {
+        margin-top: 40px;
+    }
+    button.purple_bg.delee_btn {
+        background: #F83737;
+    }
+
+}

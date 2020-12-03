@@ -1,0 +1,67 @@
+page-home {
+    .green_dot, .red_dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+    .green_dot {
+        background: #48BD0F;
+    }
+    .red_dot{
+        background: #D94141;
+    }
+    .redius-15.drop_location.card {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .tracking_box .tracking_content .card {
+        box-shadow: 0px 0px 10px #d5d5d5b0;
+    }
+    .bottom_btn button {
+        border-radius: 25px;
+        font-size:1.3rem;
+        padding: 9px 25px;
+        width: 45%;
+    }
+    .small-text {
+        color: #ababab;
+    }
+    .tracking_content {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 999;
+    }
+    .location_box{
+        padding: 0px 15px;
+    }
+    input.Vehicle_no.text-black {
+        border: none;
+        width: 100%;
+    }
+    button.purple_bg {
+        min-height: 4.7rem;
+    }
+  .truck_box{
+    background-image: url(../assets/img/white_bg.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 20px 20px 0px 20px;
+    height: 250px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  .truck_box img, .truck_box ion-thumbnail {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+  }
+  .transparent{
+    background: transparent!important;
+  }
+  .selected-bg{
+    background: #c8c7cc !important;
+  }
+}

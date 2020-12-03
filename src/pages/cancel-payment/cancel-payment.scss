@@ -1,0 +1,46 @@
+page-cancel-payment {
+    .cancel_list img{
+        width: 65px;
+    }
+    .cancel_list h2 {
+        font-size: 1.2rem;
+    font-weight: 500;
+    }
+    .cancel_list span{
+        font-size: 1rem;
+    }   
+    .cancel_list .danger{
+        color: #CF4B10;
+        font-size: 1.3rem;
+        font-weight: 500;
+    } 
+    .history_list {
+        background-image: url(../assets/img/white_bg.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 20px 30px;
+    }
+    .Drop_location span.danger{
+        float: right;
+    }
+    .Drop_location, .pickup_location {
+        display: inline-block;
+        width: 100%;
+    }
+    .cancel_list .item {
+        min-height: inherit;
+        padding-right: 10px;
+        height: 18px;
+    }
+    .cancel_list .item.btn_box {
+        min-height: inherit;
+        padding-right: 0px;
+        height: 33px;
+    }
+    .cancel_list .item-block .item-inner {
+        padding: 0px;
+    }
+    .cancel_list .item-block .item-inner span {
+        margin: 0px;
+    }
+}

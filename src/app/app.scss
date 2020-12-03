@@ -1,0 +1,152 @@
+.text-grey {
+    color: #747474;
+}
+.text-white, .top-header .toolbar-title{
+    color: white;
+}
+.text-black, .round_bg p {
+    color: black;
+}
+.text-purple {
+    color: #752264;
+}
+.top-header button {
+    color: #fff;
+    font-size: 11pt;
+}
+.top-header .toolbar-title {
+    color: #fff;
+    font-size: 1.6rem;
+}
+.top-header, .top-header .toolbar-background, .top-header .toolbar {
+    background: #752264;
+    box-shadow: none;
+    border: none;
+}
+.top-header::after {
+    background: none;
+}
+.purple_btn{
+    background: #752264;
+    box-shadow: none;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+.purple_bg{
+    background: #752264;
+}
+.transparent, .transparent .toolbar-background, .transparent .searchbar{
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+.small-text {
+    font-size: 1.1rem;
+}
+.medium-text {
+    font-size:  1.3rem;
+}
+.big-text {
+    font-size: 1.5rem;
+}
+.medium-bold {
+    font-weight: 500;
+}
+.bold {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.semi-bold {
+    font-weight: bold;
+}
+.redius-5{
+    border-radius: 5px;
+}
+.redius-7{
+    border-radius: 7px;
+}
+.redius-10{
+    border-radius: 10px;
+}
+.redius-15{
+    border-radius: 15px;
+}
+.italic{
+    font-style: italic;
+}
+.capitalize{
+    text-transform: capitalize;
+}
+.no-shadow{
+    box-shadow: none;
+}
+.show-back-button {
+    margin: 0px;
+}
+.transparent-btn{
+    background:transparent;
+    box-shadow: none;
+    border-radius: 7px;
+}
+.right{
+    float: right;
+}
+.list-ios > .item-block:first-child,
+.list-ios .item-block .item-inner,
+.list-ios > .item-block:last-child,
+.list-md .item-block .item-inner {
+    border: none;
+    background: transparent;
+}
+.top-header .drover_icn button {
+    display: block !important;
+}
+.list-ios > .item-block:first-child {
+    border-top: none;
+}
+.header::after,  .footer::before{
+    background:transparent;
+}
+.card {
+    width: 100%;
+    margin: 0px;
+}
+.hide_icn {
+    opacity: 0;
+    min-width: 44px;
+    padding: 0 5px;
+}
+
+.notification_icn img {
+    width: 16px;
+}
+
+.notification_icn {
+    width: 44px;
+    text-align: center;
+    padding: 0px 5px 0px;
+}
+.top-header .toolbar-title {
+    font-size: 1.4rem;
+}
+.main-bg {
+    background-image: url(../assets/img/bg_image.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.drover_icn img {
+    width: 22px;
+}
+.error-message {
+    color: red;
+    text-align: left;
+    margin-left: 5pt;
+    margin-top: 5pt;
+    font-size: 12px;
+  }
+.location-option {
+  padding: 5px;
+  color: gray;
+  margin-left: 10px;
+}

@@ -1,0 +1,63 @@
+<ion-header class="top-header">
+  <ion-navbar>
+      <ion-title text-center>Notifications</ion-title>
+      <ion-buttons right class="notification_icn" (click)="notification()">
+        <button ion-button icon-only light class="text-white">
+            <img src="assets/img/notifications.png">
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding  class="notifications main-bg">
+  <ion-refresher class="pull-refresh" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="isListEmpty" class="big-text" margin-top padding text-center>No Notifications are available.</div>
+  <div *ngIf="!isListEmpty">
+      <ion-grid *ngIf="isTodayAvailable">
+        <ion-row>
+          <ion-col col-4></ion-col>
+          <ion-col col-4 text-center class="small-text semi-bold capitalize italic">Today</ion-col>
+          <ion-col (click)="clear(false)" col-4 text-right no-padding class="small-text">Clear all</ion-col>
+        </ion-row>
+      </ion-grid>
+      <div *ngFor="let item of notificationList">
+        <ion-list *ngIf="item.isToday">
+        <ion-item margin-bottom no-padding class="transparent">
+          <ion-avatar item-start>
+            <img src="assets/img/notifi-icn.png">
+          </ion-avatar>
+          <div class="small-text medium-bold">{{item.message}}</div>
+          <div *ngIf="item.types == '2'" text-right>
+            <button class="Chatnow_btn no-shadow text-white">CHAT WITH DRIVER</button>
+            <button (click)="startLiveTracking(item)" class="tracking_btn no-shadow text-white">START LIVE TRACKING</button>
+          </div>
+        </ion-item>
+      </ion-list>
+      </div>
+      <ion-grid *ngIf="isYesterdayAvailable">
+        <ion-row>
+          <ion-col col-4></ion-col>
+          <ion-col col-4 text-center class="small-text semi-bold capitalize italic">Yesterday</ion-col>
+          <ion-col (click)="clear(false)" col-4 text-right no-padding class="small-text">Clear</ion-col>
+        </ion-row>
+      </ion-grid>
+      <div *ngFor="let item of notificationList">
+        <ion-list *ngIf="item.isYesterday">
+          <ion-item margin-bottom no-padding class="transparent">
+            <ion-avatar item-start>
+              <img src="assets/img/notifi-icn.png">
+            </ion-avatar>
+            <div class="small-text medium-bold">{{item.message}}</div>
+            <div *ngIf="item.types == '2'" text-right>
+              <button class="Chatnow_btn no-shadow text-white">CHAT WITH DRIVER</button>
+              <button (click)="startLiveTracking(item)" class="tracking_btn no-shadow text-white">START LIVE TRACKING</button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,67 @@
+page-complete-payment {
+    .cancel_list img{
+        width: 65px;
+    }
+    .cancel_list h2 {
+        font-size: 1.2rem;
+        line-height: 0px;
+        margin-bottom: 5px;
+    }
+    .cancel_list span{
+        font-size: 1rem;
+        float: left;
+    }          
+    .Drop_location span.text-yellow, .pickup_location span.text-yellow{
+        float: right;
+    }
+    .cancel_list h2 p {
+        display: inline-block;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #000;
+        margin-left: 15px;
+    } 
+    .Drop_location, .pickup_location {
+        display: inline-block;
+        width: 100%;
+    }
+    .cancel_list span.medium-text {
+        font-size:1.4rem;
+    }        
+    .Drop_location span.text-yellow {
+        color: #309D3E;
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+    .driver_list h2 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding-top: 10px;
+    }
+    .driver_list span{
+        font-size: 1rem;
+    }    
+    .driver_list .item {
+        min-height: inherit;
+        padding: 0px 0px 10px 16px;
+    }
+    .driver_list .item.btn_box {
+        min-height: inherit;
+        padding-right: 0px;
+    }
+    .driver_list .item span, .driver_list .item.btn_box h2 {
+        margin: 0px 8px 6px 0;
+    }
+    .driver_list .item-block .item-inner {
+        padding: 0px;
+    }
+    .driver_list .item-block .item-inner span {
+        margin: 0px;
+    } 
+    .history_list {
+        background-image: url(../assets/img/white_bg.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 20px 30px;
+    }
+}

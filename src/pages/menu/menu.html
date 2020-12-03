@@ -1,0 +1,49 @@
+<ion-menu [content]="content" (ionOpen)="openMenu()" type="overlay">
+    <ion-content class="sidebar-box purple_bg">
+      <ion-list>
+        <ion-item menuToggle no-lines padding-top class="user-div" (click)="edit_profile()">
+          <div item-start >
+            <img [src]="userData.image && userData.image !==''&& userData.image !=='https://alphawizz.org/Rescue//https://alphawizz.org/Rescue/'?userData.image:'assets/img/user.png'">
+          </div>
+          <div>
+            <h2 text-wrap class="medium-bold">{{userData.first_name&&userData.last_name?userData.first_name+' '+userData.last_name:'No Name'}}</h2>
+            <div text-wrap class="small-text" style="margin-top: 5px">{{userData.phone_number}}</div>
+          </div>
+          <ion-icon item-right small name="md-arrow-forward"></ion-icon>
+        </ion-item>
+
+        <div padding class="list-box">
+          <ion-item no-padding menuToggle no-lines  class="small-text transparent" (click)="openPage('HomePage')">
+            <img item-left class="menu-icons" src="assets/img/home.png">
+            <div class="text-white medium-text">Home</div>
+          </ion-item>
+          <ion-item no-padding menuToggle no-lines  class="small-text transparent" (click)="openPage('TabsPage')">
+            <img item-left class="menu-icons" src="assets/img/history.png">
+            <div class="text-white medium-text">My History</div>
+          </ion-item>
+          <ion-item no-padding menuToggle no-lines class="small-text transparent"  (click)="chat_list()">
+            <img item-left class="menu-icons" src="assets/img/chat.png">
+            <div class="text-white medium-text">Chatlist</div>
+          </ion-item>
+          <ion-item (click)="shareApp()" no-padding menuToggle no-lines class="small-text transparent">
+            <img item-left class="menu-icons share" src="assets/img/share.png">
+            <div class="text-white medium-text">Share App</div>
+          </ion-item>
+          <ion-item no-padding menuToggle no-lines class="small-text transparent"  (click)="help()">
+            <img item-left class="menu-icons help" src="assets/img/help.png">
+            <div class="text-white medium-text">Help</div>
+          </ion-item>
+          <ion-item (click)="exit()" no-padding menuToggle no-lines class="small-text transparent">
+            <img item-left class="menu-icons" src="assets/img/logout.png">
+            <div class="text-white medium-text">Exit</div>
+          </ion-item>
+          <!-- <ion-item no-padding menuToggle no-lines (click)="openPage('ChatListPage')" class="small-text transparent">
+              <img item-left class="menu-icons" src="assets/img/chat.png">
+              <div class="text-white medium-text">Chatlist</div>
+            </ion-item> -->
+        </div>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-nav #content [root]="rootPage"></ion-nav>

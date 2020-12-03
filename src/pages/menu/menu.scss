@@ -1,0 +1,24 @@
+page-menu {
+  .user-div{
+    background: white !important;
+  }
+    .user-div img {
+        width: 50px;
+        border-radius: 50%;
+        height: 50px;
+        object-fit: cover;
+      }
+      .menu-inner .list-box .transparent .item-inner {
+        margin: 0px;
+      }
+      .menu-icons {
+        font-size: 2.2rem;
+        width:3.9rem;
+      }
+      .transparent.item {
+        margin-bottom: 1.1rem;
+      }
+    h3.medium-bold {
+      font-weight: 500;
+    }
+}

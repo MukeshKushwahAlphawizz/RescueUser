@@ -1,0 +1,130 @@
+<ion-header class="top-header">
+  <ion-navbar>
+    <ion-title text-center>Edit Profile</ion-title>
+    <ion-buttons right class="notification_icn" (click)="notification()">
+      <button ion-button icon-only light class="text-white">
+        <img src="assets/img/notifications.png">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="main-bg">
+  <form [formGroup]="signUpForm">
+    <div text-center margin-bottom class="login-title">
+      <div (click)="openPicker()" class="user_profile">
+        <img class="user" [src]="profileImgToShow && profileImgToShow !== ''&& profileImgToShow !== 'https://alphawizz.org/Rescue//https://alphawizz.org/Rescue/'?profileImgToShow:'assets/img/user.png'">
+        <img class="edit_profile" src="assets/img/edit_profile.png">
+      </div>
+    </div>
+    <ion-list margin padding>
+      <ion-item no-padding margin-bottom class="transparent">
+        <ion-input formControlName="firstName" type="text" placeholder="First Name"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.firstName">
+          <div class="error-message"
+               *ngIf="signUpForm.get('firstName').hasError(error.type) && (signUpForm.get('firstName').dirty || signUpForm.get('firstName').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item no-padding margin-bottom class="transparent">
+        <ion-input formControlName="lastName" type="text" placeholder="Last Name"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.lastName">
+          <div class="error-message"
+               *ngIf="signUpForm.get('lastName').hasError(error.type) && (signUpForm.get('lastName').dirty || signUpForm.get('lastName').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <!--<ion-item no-padding margin-bottom class="transparent">
+        <ion-input formControlName="mobileNumber" type="number" placeholder="Mobile No."></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.mobileNumber">
+          <div class="error-message"
+               *ngIf="signUpForm.get('mobileNumber').hasError(error.type) && (signUpForm.get('mobileNumber').dirty || signUpForm.get('mobileNumber').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>-->
+
+      <ion-item no-padding class="transparent">
+        <ion-icon item-right class="text-purple small-text" name="md-pin"></ion-icon>
+        <ion-input (input)='onChangeLocation($event.target.value)' formControlName="address" type="text" placeholder="Address"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.address">
+          <div class="error-message"
+               *ngIf="signUpForm.get('address').hasError(error.type) && (signUpForm.get('address').dirty || signUpForm.get('address').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+      <div class="location-option" *ngFor="let item of this.autocompleteItemsSearch" tappable
+           (click)="chooseItemSource(item)">
+        <div>{{item.description}}</div>
+      </div>
+    </ion-list>
+
+    <div margin padding-left padding-right class="Vehicle_dtls">
+      <h1 class="italic">Change Vehicle Details</h1>
+      <ion-item no-padding margin-bottom class="transparent">
+        <ion-input formControlName="vehicleNumber" type="text" placeholder="Vehicle Registration No."></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.vehicleNumber">
+          <div class="error-message"
+               *ngIf="signUpForm.get('vehicleNumber').hasError(error.type) && (signUpForm.get('vehicleNumber').dirty || signUpForm.get('vehicleNumber').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item no-padding margin-bottom class="transparent">
+        <ion-input formControlName="carName" type="text" placeholder="Car Name"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.carName">
+          <div class="error-message"
+               *ngIf="signUpForm.get('carName').hasError(error.type) && (signUpForm.get('carName').dirty || signUpForm.get('carName').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item no-padding margin-bottom class="transparent">
+        <ion-input formControlName="modelNumber" type="text" placeholder="Model No."></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.modelNumber">
+          <div class="error-message"
+               *ngIf="signUpForm.get('modelNumber').hasError(error.type) && (signUpForm.get('modelNumber').dirty || signUpForm.get('modelNumber').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item no-padding margin-bottom class="transparent">
+        <ion-input formControlName="weight" type="number" placeholder="Weight"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.weight">
+          <div class="error-message"
+               *ngIf="signUpForm.get('weight').hasError(error.type) && (signUpForm.get('weight').dirty || signUpForm.get('weight').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div text-center class="signin-btn">
+      <button (click)="deleteAccount()" no-margin ion-button full class="purple_bg delee_btn no-shadow capitalize">Delete Account</button>
+      <button (click)="save()" [disabled]="signUpForm.invalid" no-margin ion-button full class="purple_bg no-shadow">Save And Exit</button>
+    </div>
+  </form>
+</ion-content>

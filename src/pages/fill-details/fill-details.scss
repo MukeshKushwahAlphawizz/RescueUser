@@ -1,0 +1,72 @@
+page-fill-details {
+    .location_img {
+        padding: 20px 35px 0px;
+    }
+    .address_box span {
+        display: block;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+    .round_bg{
+        background-image: url(../assets/img/white_bg.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 15px 40px;
+    }
+    .round_bg.item.item-block.item-md {
+        align-items: flex-start;
+    }
+    .round_bg.item.item-block.item-md img {
+        margin-top: 36px;
+    }
+    .round_bg h2 {
+        font-weight: bold;
+    }
+    .round_bg p {
+        font-size: 1.3rem;
+        margin: 8px 0px;
+    }
+    .edit_location .icon {
+        margin-right: 4px;
+    }
+    .fill_details .transparent .item-inner {
+        border-bottom: 1px solid #AFAFAF;
+    }
+    .fill_details .transparent .item-inner input::placeholder{
+        color: #000;
+    }
+    .fill_details .Pickup-letert.transparent .item-inner {
+        border-bottom: none;
+        padding-right: 0px;
+    }
+    button.purple_bg {
+        min-height:4.7rem;
+    }
+    .date_field .input, .time_field .input {
+        background-repeat: no-repeat;
+        background-size: 16px;
+        background-position: 100% 50%;
+    }
+    .date_field .input {
+        background-image: url(../assets/img/calendar.png);
+    }
+    .time_field .input{
+        background-image: url(../assets/img/time.png);
+    }
+    .toggle-md.toggle-checked .toggle-icon {
+        background-color: #c9c9c9a1;
+    }
+    .toggle-md.toggle-checked .toggle-inner {
+        background-color: #752264;
+    }
+
+  input[type="date"]:before,input[type="time"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+  }
+  input[type="date"]:focus:before,
+  input[type="date"]:valid:before {
+    content: "";
+  }
+}

@@ -1,0 +1,43 @@
+<ion-content padding class="main-bg">
+  <div text-center margin-bottom class="login-title">
+      <img class="logo" src="assets/img/logo.png">
+      <h1 class="italic">Create Account</h1>
+  </div>
+  <form [formGroup]="signUpForm">
+    <ion-list margin-left margin-right>
+      <ion-item no-padding class="transparent">
+        <ion-label floating><ion-icon large class="text-purple" name="ios-mail"></ion-icon> Email Id </ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.email">
+          <div class="error-message" *ngIf="signUpForm.get('email').hasError(error.type) &&
+                (signUpForm.get('email').dirty || signUpForm.get('email').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item no-padding class="transparent">
+        <ion-label floating><ion-icon class="text-purple" name="md-key"></ion-icon> Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let error of error_messages.password">
+          <div class="error-message"
+               *ngIf="signUpForm.get('password').hasError(error.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+      <div text-center class="signin-btn">
+        <button [disabled]="signUpForm.invalid" ion-button full class="purple_btn" (click)="signup()">Create</button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>
+<ion-footer>
+    <div text-center margin-bottom  padding-bottom  class="Register_text">
+        <h6 class="italic" (click)="login()">Already Have An Account <img class="hand_img" src="assets/img/hand-left2.png"></h6>
+      </div>
+</ion-footer>

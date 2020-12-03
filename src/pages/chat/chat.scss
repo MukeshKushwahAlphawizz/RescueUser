@@ -1,0 +1,71 @@
+page-chat {
+    .chat_left {
+        display: inline-block;
+        width: 75%;
+    }
+    .chat_left img {
+        float: left;
+    }
+    .chat_left img, .chat_right img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+    .chat_left .message_box {
+        float: left;
+        margin-left: 5px;
+    }
+        
+    .small-text {
+        font-size: 1.1rem;
+        margin: 0px 0px 5px;
+    }
+    .chat_left span {
+        background: #F4F4F4;
+    }
+    .chat_left span, .chat_right span {
+        padding: 9px 20px 9px 6px;
+        font-size: 1.2rem;
+        width: auto;
+        display: inline-block;
+    }
+    .chat_right span {
+        background: #E6DDE4;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+    .chat_right {
+        display: inline-block;
+        width: 75%;
+        float: right;
+        margin-top: 30px;
+    }
+    .footer button img {
+        width: 25px;
+    }
+    .footer button.send_btn img {
+        width: 35px;
+    }
+    .footer .item .item-inner {
+        padding-right: 0px;
+    }
+    .footer input {
+        padding: 9px;
+        font-size: 1.2rem;
+        color: #3B3B3B;
+        width: 100%;
+        margin: auto;
+        display: block;
+        border-radius: 7px;
+        border: 1px solid #3B3B3B;
+    }
+    .footer input::placeholder{
+        color: #3B3B3B;
+    }    
+    .footer button.send_btn {
+        margin: 7px 0px 0px 0px;
+    }
+    .emoji {
+        padding-left: 13px;
+    }
+}

@@ -1,0 +1,68 @@
+page-user-details {
+    .user {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .user_profile {
+        position: relative;
+        width: 105px;
+        margin: 3rem auto 1rem;
+    }
+    .edit_profile {
+        position: absolute;
+        width: 35px;
+        right: 5px;
+        top: 0px;
+    }
+    .main-bg .transparent .item-inner {
+        border-bottom: 1px solid #AFAFAF;
+    }
+    .main-bg .transparent .item-inner input::placeholder{
+        color: #000;
+        font-size: 1.4rem;
+    }
+    .transparent .text-purple {
+        font-size: 2rem;
+        margin: 0px;
+        line-height: 30px;
+    }
+    input.Vehicle_no {
+        width: 70%;
+        height: 40px;
+        padding: 10px;
+        background: #F8F8F8;
+        border: none;
+        float: left;
+    }
+    button.medium-text {
+        width: 30%;
+        margin: 0px;
+        float: right;
+        color: #fff;
+        height: 40px;
+    }
+    .Vehicle-field {
+        display: inline-block;
+        width: 100%;
+    }
+    .details-box {
+        background-image: url(../assets/img/white_bg.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 30px 20px 30px 20px;
+    }
+    .details-box span {
+        display: block;
+        margin: 9px 20px;
+    }
+    button.purple_bg {
+        min-height: 4.3rem;
+    }
+  .location-option {
+    padding: 5px;
+    color: gray;
+    margin-left: 10px;
+  }
+}
