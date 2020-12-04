@@ -25,10 +25,17 @@ export class SummaryPage {
     this.userData = navParams.data.userData;
     this.summaryData = navParams.data.summaryData;
     this.bookingId = navParams.data.bookingId;
-    this.event.subscribe('isRequestAccepted',(res)=>{
-      if (res){
-        this.isRequestAccepted = true;
-      }
+    this.event.subscribe('bookingAccepted',(res)=>{
+      let item : any =res;
+      this.isRequestAccepted = true;
+      util.dismissLoader();
+      console.log('JSON.parse(item.booking_info)',JSON.parse(item.booking_info));
+      item.types_id = JSON.parse(item.booking_info).id; //set booking id into types_id for live tracking page
+      console.log('item is >>>>>',item);
+      this.storage.set('currentRoute',item).then(()=>{
+        this.navCtrl.setRoot('LiveTrackingPage');
+      })
+      // this.navCtrl.setRoot('LiveTrackingPage');
     })
   }
 

@@ -6,50 +6,47 @@
                 <img src="assets/img/menu_icon.png">
           </button>
       </ion-buttons>
-  
+
       <ion-title text-center>My History</ion-title>
-      
+
       <ion-buttons right class="notification_icn" (click)="notification()">
             <button ion-button icon-only light class="text-white">
-                <img src="assets/img/notifications.png">       
+                <img src="assets/img/notifications.png">
             </button>
-        </ion-buttons> 
-      
+        </ion-buttons>
+
     </ion-navbar>
   </ion-header>
-  
-  <ion-content margin-top class="cancel_list main-bg">
-      
-      <ion-list>
-        
-  
-         <div class="history_list">
-            <ion-row>
-                <ion-col col-2 no-padding>
-                    <ion-thumbnail>
-                        <img src="assets/img/dummy_pic.png">
-                      </ion-thumbnail> 
-                </ion-col> 
-                <ion-col col-10 no-padding>
-   
-                        <ion-item class="btn_box">
-                            <h2 item-start>Date : 12-Oct-2020</h2>
-                            <span item-end class="medium-bold">Time Left :  00</span>
-                        </ion-item>
-   
-                    <div padding-left class="pickup_location">
-                        <span item-start>Pickup Location : Location Name here</span>
-                    </div>
-   
-                    <div padding-left class="Drop_location">
-                        <span item-start>Drop Location : Location Name here</span>
-                        <span item-end class="danger">Cancelled </span>
-                    </div>
-                </ion-col>
-            </ion-row>  
-          </div>
-   
+
+<ion-content margin-top class="cancel_list main-bg">
+  <div text-center margin-top class="bold big-text" *ngIf="isListEmpty">No cancelled history data are available</div>
+  <div *ngIf="!isListEmpty">
+    <ion-list>
+      <div *ngFor="let item of historyList"  class="history_list">
+        <ion-row>
+          <ion-col col-2 no-padding>
+            <ion-thumbnail>
+              <img src="assets/img/dummy_pic.png">
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col col-10 no-padding>
+
+            <ion-item class="btn_box">
+              <h2 item-start>Date : {{item.pick_date}}</h2>
+              <span item-end class="medium-bold">Time Left :  {{item.pick_time}}</span>
+            </ion-item>
+
+            <div padding-left class="pickup_location">
+              <span item-start>Pickup Location : <b>{{item.pick_location}}</b></span>
+            </div>
+
+            <div padding-left class="Drop_location">
+              <span item-start>Drop Location : <b>{{item.drop_location}}</b></span>
+              <!--<span item-end class="danger">Cancelled </span>-->
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
      </ion-list>
-  
-  </ion-content>
-  
+  </div>
+</ion-content>

@@ -25,6 +25,7 @@ export class MyHistoryPage {
   ionViewDidEnter() {
     this.getHistoryList();
   }
+
   getHistoryList() {
     this.storage.get('userData').then(userData=>{
       this.userData = JSON.parse(userData);
@@ -49,16 +50,23 @@ export class MyHistoryPage {
       })
     })
   }
+
   chat() {
     this.app.getRootNav().push('ChatPage');
   }
-  // Tracking() {
-  //   this.app.getRootNav().setRoot('LiveTrackingPage');
-  // }
+
+  startTracking(item: any) {
+    item.types_id = item.id; //set booking id into types_id for live tracking page
+    this.storage.set('currentRoute',item).then(()=>{
+      this.app.getRootNav().setRoot('MenuPage');
+    })
+  }
+
   Tracking() {
     this.app.getRootNav().setRoot('LiveTrackingPage');
   }
-  notificaion(){
+
+  notification(){
     this.app.getRootNav().push('NotificationsPage');
   }
 }

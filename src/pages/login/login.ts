@@ -106,13 +106,13 @@ export class LoginPage {
       console.log('token >>>',this.firebaseToken);
     });
 
-    this.fcm.onNotification().subscribe(data => {
+    /*this.fcm.onNotification().subscribe(data => {
       if(data.wasTapped){
         console.log("Received in background",data);
       } else {
         console.log("Received in foreground",data);
       }
-    });
+    });*/
 
     this.fcm.onTokenRefresh().subscribe(token => {
       // console.log('onTokenRefresh called !!!',token);

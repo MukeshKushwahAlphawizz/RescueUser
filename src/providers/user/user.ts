@@ -27,6 +27,7 @@ export class User {
   enter_vehicle_no_verify : string = 'Authentication/enter_vehicle_no_verify';
   get_route_details : string = 'Drivers/get_route_details';
   my_history : string = 'Users/my_history';
+  driver_current_status : string = 'Users/driver_current_status';
 
   constructor(public api: Api) { }
 
@@ -118,6 +119,10 @@ export class User {
   }
   getHistory(data: any) {
     let res = this.api.post(this.my_history, data).share();
+    return res;
+  }
+  getDriverLatLng(data: any) {
+    let res = this.api.post(this.driver_current_status, data).share();
     return res;
   }
 }

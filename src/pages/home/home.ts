@@ -45,6 +45,7 @@ export class HomePage {
               public navParams: NavParams) {
   }
   ionViewDidLoad() {
+    this.storage.set('currentRoute',null);
     this.getUserData();
     this.loadMap();
   }

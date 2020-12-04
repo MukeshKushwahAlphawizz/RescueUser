@@ -9,10 +9,10 @@ page-payment {
         background-color: transparent;
         padding: 17px 35px;
         margin-bottom: 5rem;
-    }       
+    }
     button.purple_bg {
         width: 95%;
-    }       
+    }
     button.purple_bg .icon {
         margin-left: 5px;
     }
@@ -36,7 +36,7 @@ page-payment {
     }
     .card_field {
         margin-top: 3rem;
-    }        
+    }
     .signin-btn button.purple_bg {
         width: 100%;
         min-height: 4.3rem;
@@ -51,4 +51,9 @@ page-payment {
         background-image: url(../assets/img/credit-card.png);
         padding: 7px 10px 7px 35px;
     }
+  .pay-now{
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+  }
 }

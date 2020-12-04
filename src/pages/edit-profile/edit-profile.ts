@@ -47,6 +47,7 @@ export class EditProfilePage {
       this.userData = JSON.parse(userData);
       this.signUpForm.controls.firstName.setValue(this.userData.first_name);
       this.signUpForm.controls.lastName.setValue(this.userData.last_name);
+      this.signUpForm.controls.mobileNumber.setValue(this.userData.phone_number);
       this.signUpForm.controls.address.setValue(this.userData.address);
       this.signUpForm.controls.vehicleNumber.setValue(this.userData.vehicle_number);
       this.signUpForm.controls.carName.setValue(this.userData.car_name);
@@ -90,6 +91,7 @@ export class EditProfilePage {
     formData.append('profile_id',this.userData.id);
     formData.append('firstname',this.signUpForm.value.firstName);
     formData.append('lastname',this.signUpForm.value.lastName);
+    formData.append('mobile_no',this.signUpForm.value.mobileNumber);
     formData.append('lat',this.lat);
     formData.append('lang',this.lng);
     formData.append('vehiclenumber',this.signUpForm.value.vehicleNumber);
@@ -123,6 +125,9 @@ export class EditProfilePage {
       lastName: [
         { type: "required", message: 'Last Name is required' },
       ],
+      mobileNumber: [
+        { type: "required", message: 'Mobile Number is required' },
+      ],
       address: [
         { type: "required", message: 'Address is required' },
       ],
@@ -148,6 +153,12 @@ export class EditProfilePage {
           ])
         ),
         lastName: new FormControl(
+          "",
+          Validators.compose([
+            Validators.required,
+          ])
+        ),
+        mobileNumber: new FormControl(
           "",
           Validators.compose([
             Validators.required,

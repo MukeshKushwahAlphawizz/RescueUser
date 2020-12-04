@@ -5,55 +5,73 @@
         <ion-buttons right class="hide_icn">
             <button ion-button icon-only light class="text-white">
             </button>
-          </ion-buttons> 
-      
+          </ion-buttons>
+
     </ion-navbar>
 </ion-header>
 
 
 <ion-content class="main-bg">
-    <h6 padding class="italic"> <ion-icon name="checkmark-circle-outline"></ion-icon> Driver Accepted Your Request</h6>
+  <h6 padding class="italic"> <ion-icon name="checkmark-circle-outline"></ion-icon> Driver Accepted Your Request</h6>
+  <div class="details_list">
+    <p class="medium-bold">Total Price</p>
+    <h4>$60</h4>
+    <span>Payment Method</span>
 
-    <div class="details_list">
-        <p class="medium-bold">Total Price</p>
-        <h4>$60</h4>
-        <span>Payment Method</span>
+    <ion-grid class="grid_list" no-padding margin-top>
+      <ion-row>
+        <ion-col col-6 class="">
+          <button (click)="paypal()" no-margin ion-button full
+                  class="paypal medium-bold purple_bg capitalize no-shadow text-black redius-7">
+            PayPal  <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-6 class="right-line">
+          <button (click)="cardPay()" no-margin ion-button full
+                  class="purple_bg medium-bold capitalize no-shadow redius-7">
+            Card  <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-        <ion-grid class="grid_list" no-padding margin-top>
-            <ion-row>
-              <ion-col col-6 class="">
-                  <button no-margin ion-button full class="paypal medium-bold purple_bg capitalize no-shadow text-black redius-7">PayPal  <ion-icon name="ios-checkmark-circle-outline"></ion-icon></button> 
-              </ion-col>
-              <ion-col col-6 class="right-line">
-                  <button no-margin ion-button full class="purple_bg medium-bold capitalize no-shadow redius-7">Card  <ion-icon name="ios-checkmark-circle-outline"></ion-icon></button> 
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-
-          <div class="card_field">
-              <div class="fullsize_field card_input">
-                  <label>Card Number</label>
-                  <input type="text" class="Vehicle_no" value="**** **** ****">
-              </div>
-              <div class="halfsize_field">
-                  <label>Valid Until</label>
-                  <input type="text" class="Vehicle_no" value="Month / Year">
-              </div>
-              <div class="halfsize_field">
-                  <label>CVV</label>
-                  <input type="text" class="Vehicle_no" value="***">
-              </div>
-              <div class="fullsize_field">
-                  <label>Card Holder Name</label>
-                  <input type="text" class="Vehicle_no" value="Name Here">
-              </div>
-          </div>
-
+    <div [hidden]="!isPaypal">
+      <div padding margin id="paypal-button"></div>
     </div>
-
-    <div text-center class="signin-btn">
-        <button no-margin ion-button full class="purple_bg no-shadow">pAY nOW</button>                      
+    <div [hidden]="isPaypal">
+      <form padding action="/" method="post" id="payment-form">
+        <div class="form-row">
+          <div id="card-element">
+          </div>
+          <div id="card-errors" role="alert"></div>
+        </div>
+        <div text-center class="pay-now">
+          <button (click)="payNow()" no-margin ion-button full class="purple_bg no-shadow">PAY NOW</button>
+        </div>
+        <!--<button class="text-white text-transfrom pay-button" ion-button round>Process to pay</button>-->
+        <!--<div margin text-center><button margin-top ion-button round small>Pay</button></div>-->
+      </form>
+    </div>
+    <!--<div class="card_field">
+      <div class="fullsize_field card_input">
+        <label>Card Number</label>
+        <input type="text" class="Vehicle_no" value="**** **** ****">
       </div>
+      <div class="halfsize_field">
+        <label>Valid Until</label>
+        <input type="text" class="Vehicle_no" value="Month / Year">
+      </div>
+      <div class="halfsize_field">
+        <label>CVV</label>
+        <input type="text" class="Vehicle_no" value="***">
+      </div>
+      <div class="fullsize_field">
+        <label>Card Holder Name</label>
+        <input type="text" class="Vehicle_no" value="Name Here">
+      </div>
+    </div>-->
+
+  </div>
+
 
 </ion-content>
- 

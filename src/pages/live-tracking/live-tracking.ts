@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewChild, ElementRef } from '@angular/core';
-import {App} from "ionic-angular/index";
+import {App, Events} from "ionic-angular/index";
 import {Storage} from "@ionic/storage";
 import {UtilProvider} from "../../providers/util/util";
 import {User} from "../../providers";
@@ -24,22 +24,47 @@ export class LiveTrackingPage {
   long1:any='';
   lat2:any='';
   long2:any='';
+  routeDetail:any={}
+  driver_id:any={}
+  private interval: any;
 
   constructor(public navCtrl: NavController,
               public app: App,
               public util:UtilProvider,
               public user : User,
+              public events : Events,
               public storage: Storage,
               public navParams: NavParams) {
+    this.events.subscribe('tripEnded',data=>{
+      if (this.interval){
+        clearInterval(this.interval);
+      }
+    })
+    this.events.subscribe('tripStarted',data=>{
+      this.driver_id = JSON.parse(data.booking_info).driver_id;
+      if (this.interval){
+        clearInterval(this.interval);
+      }
+      this.interval = setInterval(()=>{
+        this.getDriverLatLng();
+      },5000)
+    })
   }
   ionViewDidEnter(){
     this.storage.get('currentRoute').then(currentRoute=>{
+      console.log('currentRoute>>>>>',currentRoute);
       if (currentRoute && currentRoute.types_id){
         this.getRouteDetail(currentRoute.types_id);
       }else {
         this.loadMap();
       }
     })
+  }
+  ionViewDidLeave(){
+    clearInterval(this.interval);
+  }
+  ngOnDestroy(){
+    clearInterval(this.interval);
   }
 
   ionViewDidLoad() {
@@ -71,7 +96,8 @@ export class LiveTrackingPage {
     this.user.getRouteDetail(data).subscribe(res=>{
       let resp :any = res;
       if (resp.status){
-        this.calculateAndDisplayRoute(resp.data.pick_location,resp.data.drop_location,resp.data);
+        this.routeDetail = resp.data;
+        this.calculateAndDisplayRoute(resp.data.pick_location,resp.data.drop_location,this.routeDetail);
       }
       setTimeout(()=>{
         this.util.dismissLoader();
@@ -96,8 +122,6 @@ export class LiveTrackingPage {
         this.long2=allData.drop_longitude;
         that.directionsDisplay.setDirections(response);
         this.loadMap();
-      } else {
-        // window.alert('Directions request failed due to ' + status);
       }
     });
   }
@@ -127,7 +151,29 @@ export class LiveTrackingPage {
     });
     // this.addMarker()
   }
-  ngOnDestroy(){
-    this.storage.set('currentRoute',null);
+
+  call(mobile: any) {
+    if (mobile && mobile !==''){
+
+    }else {
+      this.util.presentToast('Driver Mobile number is not available');
+    }
+  }
+
+  getDriverLatLng() {
+    console.log('this.driver_id',this.driver_id);
+    let data = {
+      driver_id:this.driver_id
+    }
+    this.user.getDriverLatLng(data).subscribe(res=>{
+      let resp : any = res;
+      if (resp.status){
+        this.routeDetail.drop_latitude = resp.data.latitude;
+        this.routeDetail.drop_longitude = resp.data.longitude;
+        let to = new google.maps.LatLng(this.routeDetail.pick_latitude, this.routeDetail.pick_longitude);
+        let from = new google.maps.LatLng(this.routeDetail.drop_latitude, this.routeDetail.drop_longitude);
+        this.calculateAndDisplayRoute(to,from,this.routeDetail);
+      }
+    },error => {})
   }
 }

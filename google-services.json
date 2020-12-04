@@ -8,6 +8,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:646728567449:android:b862f04eb2e058d3808608",
+        "android_client_info": {
+          "package_name": "com.alpha.rescuecustomer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646728567449-k50tps1p0906njvjfcev5qci6maae2qn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alpha.rescuecustomer",
+            "certificate_hash": "8ecd9fe364f7eb44c49ee4862eb34fee70e1516e"
+          }
+        },
+        {
+          "client_id": "646728567449-k9nj4v4d3la72q274g2g8qklng86f45k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK2ECJ3hpb6k28eWREWIuRi2rYhqTImp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646728567449-k9nj4v4d3la72q274g2g8qklng86f45k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "646728567449-42jees335qhv4cbrmh6pbn9p2q4r5rpd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alpha.rescueuser"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:646728567449:android:23de0c3b20a9c3dd808608",
         "android_client_info": {
           "package_name": "com.alpha.rescuedriver"
@@ -40,10 +84,10 @@
               "client_type": 3
             },
             {
-              "client_id": "646728567449-gogd06hopjmn69vseuuk0m8vtcmu3mgb.apps.googleusercontent.com",
+              "client_id": "646728567449-42jees335qhv4cbrmh6pbn9p2q4r5rpd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.alpha.rescuedriver"
+                "bundle_id": "com.alpha.rescueuser"
               }
             }
           ]
@@ -84,10 +128,10 @@
               "client_type": 3
             },
             {
-              "client_id": "646728567449-gogd06hopjmn69vseuuk0m8vtcmu3mgb.apps.googleusercontent.com",
+              "client_id": "646728567449-42jees335qhv4cbrmh6pbn9p2q4r5rpd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.alpha.rescuedriver"
+                "bundle_id": "com.alpha.rescueuser"
               }
             }
           ]
