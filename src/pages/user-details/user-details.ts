@@ -45,9 +45,11 @@ export class UserDetailsPage {
     this.error_messages = {
       firstName: [
         { type: "required", message: 'First Name is required' },
+        { type: "pattern", message: '*Enter valid name' },
       ],
       lastName: [
         { type: "required", message: 'Last Name is required' },
+        { type: "pattern", message: '*Enter valid name' },
       ],
       mobileNumber: [
         { type: "required", message: 'Mobile Number is required' },
@@ -67,18 +69,21 @@ export class UserDetailsPage {
           "",
           Validators.compose([
             Validators.required,
+            Validators.pattern('[a-zA-Z ]*')
           ])
         ),
         lastName: new FormControl(
           "",
           Validators.compose([
             Validators.required,
+            Validators.pattern('[a-zA-Z ]*')
           ])
         ),
         mobileNumber: new FormControl(
           "",
           Validators.compose([Validators.required,
-            Validators.minLength(10), Validators.maxLength(12)
+            Validators.minLength(10),
+            Validators.maxLength(12)
           ])
         ),
         address: new FormControl(
@@ -192,7 +197,6 @@ export class UserDetailsPage {
   }
 
   verify() {
-    console.log('this.signUpForm.value.vehicleNumber',this.signUpForm.value.vehicleNumber);
     if (this.signUpForm.value.vehicleNumber.trim() !==''){
       let data = {
         vehicle_no:this.signUpForm.value.vehicleNumber
@@ -202,6 +206,9 @@ export class UserDetailsPage {
         let resp : any = res;
         if (resp.status){
           this.vehicleData = resp.data;
+        }else {
+          this.vehicleData = '';
+          this.util.presentToast(resp.message);
         }
         setTimeout(()=>{
           this.util.dismissLoader();

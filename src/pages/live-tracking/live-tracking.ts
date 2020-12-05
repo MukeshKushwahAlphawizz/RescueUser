@@ -26,6 +26,7 @@ export class LiveTrackingPage {
   long2:any='';
   routeDetail:any={}
   driver_id:any={}
+  booking_id:any={}
   private interval: any;
 
   constructor(public navCtrl: NavController,
@@ -54,7 +55,8 @@ export class LiveTrackingPage {
     this.storage.get('currentRoute').then(currentRoute=>{
       console.log('currentRoute>>>>>',currentRoute);
       if (currentRoute && currentRoute.types_id){
-        this.getRouteDetail(currentRoute.types_id);
+        this.booking_id = currentRoute.types_id;
+        this.getRouteDetail(this.booking_id);
       }else {
         this.loadMap();
       }
@@ -82,7 +84,12 @@ export class LiveTrackingPage {
     this.navCtrl.push('ChatPage')
   }
   payment() {
-    this.navCtrl.push('PaymentPage')
+    let paymentData : any = {
+      amount:this.routeDetail.amount,
+      booking_id:this.booking_id
+    }
+    console.log(paymentData);
+    this.navCtrl.push('PaymentPage',{paymentData:paymentData})
   }
   notification() {
     this.navCtrl.push('NotificationsPage',{fromLiveTracking:true})
@@ -149,19 +156,17 @@ export class LiveTrackingPage {
       },
       suppressMarkers: true
     });
-    // this.addMarker()
   }
 
   call(mobile: any) {
     if (mobile && mobile !==''){
-
     }else {
       this.util.presentToast('Driver Mobile number is not available');
     }
   }
 
   getDriverLatLng() {
-    console.log('this.driver_id',this.driver_id);
+    // console.log('this.driver_id',this.driver_id);
     let data = {
       driver_id:this.driver_id
     }

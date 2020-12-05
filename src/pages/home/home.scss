@@ -51,6 +51,11 @@ page-home {
     width: 100%;
     position: absolute;
     bottom: 0;
+    overflow: scroll;
+  }
+  .inner_truck_box {
+    height: 215px;
+    overflow: scroll;
   }
   .truck_box img, .truck_box ion-thumbnail {
     width: 60px;

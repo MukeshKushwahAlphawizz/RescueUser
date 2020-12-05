@@ -30,13 +30,13 @@
             <span item-end class="medium-bold">Time Left :  {{item.time_left}}</span>
           </ion-item>
           <div text-wrap padding-left class="pickup_location">
-            <span item-start>Pickup Location : <b>{{item.pick_location}}</b></span>
-            <span item-end class="text-yellow medium-text">$60</span>
+            <span style="width: 70%;" item-start>Pickup Location : <b>{{item.pick_location}}</b></span>
+            <span item-end class="text-yellow medium-text">{{item.amount}}$<br>
+              <span item-end class="text-yellow">{{item.payment_type}} Payment</span></span>
           </div>
 
           <div text-wrap padding-left class="Drop_location">
-            <span item-start>Drop Location : <b>{{item.drop_location}}</b></span>
-            <span item-end class="text-yellow">Cash Payment</span>
+            <span style="width: 70%;" item-start>Drop Location : <b>{{item.drop_location}}</b></span>
           </div>
         </ion-col>
       </ion-row>

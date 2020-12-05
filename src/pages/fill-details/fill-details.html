@@ -17,12 +17,12 @@
       <div item-start text-canter>
         <span class="text-grey medium-text">Start</span>
         <span style="width: 165px;" class="text-grey medium-text">{{source}}</span>
-        <span margin-top class="text-grey medium-text edit_location"> <ion-icon class="text-purple" name="md-create"></ion-icon> Edit</span>
+        <span (click)="edit()" margin-top class="text-grey medium-text edit_location"> <ion-icon class="text-purple" name="md-create"></ion-icon> Edit</span>
       </div>
       <div item-end text-right text-canter>
         <span class="text-grey small-text">End </span>
         <span class="text-grey small-text">{{destination}}</span>
-        <span margin-top class="text-grey medium-text edit_location"> <ion-icon class="text-purple" name="md-create"></ion-icon> Edit</span>
+        <span (click)="edit()" margin-top class="text-grey medium-text edit_location"> <ion-icon class="text-purple" name="md-create"></ion-icon> Edit</span>
       </div>
     </ion-item>
   </ion-list>

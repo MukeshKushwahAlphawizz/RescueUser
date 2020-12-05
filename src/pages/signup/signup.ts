@@ -36,7 +36,7 @@ export class SignupPage {
     let requestData = {
       email : this.signUpForm.value.email,
       password : this.signUpForm.value.password,
-      fcm_token : this.signUpForm.value.firebaseToken,
+      fcm_token : this.firebaseToken,
     }
     this.navCtrl.push('UserDetailsPage',{requestData:requestData});
   }
@@ -49,9 +49,8 @@ export class SignupPage {
       ],
       password: [
         { type: "required", message: 'Password is required' },
-        { type: "minlength", message: '*Minimum length should be 8' },
-        { type: "maxlength", message: '*Maximum length should be 12' }
-      ]
+        { type: "minlength", message: '*Minimum length should be 8' }
+        ]
     };
     this.signUpForm = this.formBuilder.group(
       {
@@ -67,7 +66,6 @@ export class SignupPage {
           Validators.compose([
             Validators.required,
             Validators.minLength(8),
-            Validators.maxLength(12)
           ])
         )
       },
@@ -77,19 +75,7 @@ export class SignupPage {
     this.fcm.subscribeToTopic('marketing');
     this.fcm.getToken().then(token => {
       this.firebaseToken = token;
-      console.log('token >>>',this.firebaseToken);
-    });
-
-    this.fcm.onNotification().subscribe(data => {
-      if(data.wasTapped){
-        console.log("Received in background",data);
-      } else {
-        console.log("Received in foreground",data);
-      }
-    });
-
-    this.fcm.onTokenRefresh().subscribe(token => {
-      // console.log('onTokenRefresh called !!!',token);
+      // console.log('token >>>',this.firebaseToken);
     });
     this.fcm.unsubscribeFromTopic('marketing');
   }

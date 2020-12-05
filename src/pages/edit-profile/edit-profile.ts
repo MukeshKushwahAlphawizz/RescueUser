@@ -45,6 +45,7 @@ export class EditProfilePage {
   getUserData() {
     this.storage.get('userData').then(userData=>{
       this.userData = JSON.parse(userData);
+      console.log(this.userData);
       this.signUpForm.controls.firstName.setValue(this.userData.first_name);
       this.signUpForm.controls.lastName.setValue(this.userData.last_name);
       this.signUpForm.controls.mobileNumber.setValue(this.userData.phone_number);
@@ -92,6 +93,7 @@ export class EditProfilePage {
     formData.append('firstname',this.signUpForm.value.firstName);
     formData.append('lastname',this.signUpForm.value.lastName);
     formData.append('mobile_no',this.signUpForm.value.mobileNumber);
+    formData.append('address',this.signUpForm.value.address);
     formData.append('lat',this.lat);
     formData.append('lang',this.lng);
     formData.append('vehiclenumber',this.signUpForm.value.vehicleNumber);
@@ -121,12 +123,16 @@ export class EditProfilePage {
     this.error_messages = {
       firstName: [
         { type: "required", message: 'First Name is required' },
+        { type: "pattern", message: '*Enter valid name' },
       ],
       lastName: [
         { type: "required", message: 'Last Name is required' },
+        { type: "pattern", message: '*Enter valid name' },
       ],
       mobileNumber: [
         { type: "required", message: 'Mobile Number is required' },
+        { type: "minlength", message: '*Minimum length should be 8' },
+        { type: "maxlength", message: '*Maximum length should be 12' }
       ],
       address: [
         { type: "required", message: 'Address is required' },
@@ -150,18 +156,22 @@ export class EditProfilePage {
           "",
           Validators.compose([
             Validators.required,
+            Validators.pattern('[a-zA-Z ]*')
           ])
         ),
         lastName: new FormControl(
           "",
           Validators.compose([
             Validators.required,
+            Validators.pattern('[a-zA-Z ]*')
           ])
         ),
         mobileNumber: new FormControl(
           "",
           Validators.compose([
             Validators.required,
+            Validators.minLength(10),
+            Validators.maxLength(12)
           ])
         ),
         address: new FormControl(

@@ -25,8 +25,12 @@
 
       <ion-item  no-padding class="transparent">
         <ion-label floating><ion-icon class="text-purple" name="md-key"></ion-icon> Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
+        <ion-input [type]="show ? 'text' : 'password'" formControlName="password"></ion-input>
       </ion-item>
+      <div (click)="show = !show" class="icon-div eye-div">
+        <ion-icon *ngIf="!show" class="icon-eye text-grey" ios="ios-eye" md="md-eye"></ion-icon>
+        <ion-icon *ngIf="show" class="icon-eye text-grey" ios="ios-eye-off" md="md-eye-off"></ion-icon>
+      </div>
       <div>
         <ng-container *ngFor="let error of error_messages.password">
           <div class="error-message"
@@ -37,7 +41,7 @@
       </div>
 
       <div text-right margin-top margin-bottom class="medium-text">
-        <p (click)="Forgot_pass()">Forgot Password</p>
+        <p (click)="Forgot_pass()">Forgot Password?</p>
       </div>
 
       <div text-center class="signin-btn">
@@ -46,11 +50,8 @@
 
     </ion-list>
   </form>
+  <div text-center class="bottom-div">
+    <h6 class="italic" (click)="signUp()">Create A New Account <img class="hand_img" src="assets/img/hand-left.png"></h6>
+  </div>
 
 </ion-content>
-
-<ion-footer>
-    <div text-center margin-bottom  padding-bottom class="Register_text">
-        <h6 class="italic" (click)="signUp()">Create A New Account <img class="hand_img" src="assets/img/hand-left.png"></h6>
-      </div>
-</ion-footer>

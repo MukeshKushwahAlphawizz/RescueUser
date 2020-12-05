@@ -15,11 +15,24 @@ import { UtilProvider } from '../providers/util/util';
 import {FCM} from "@ionic-native/fcm";
 import {Geolocation} from "@ionic-native/geolocation";
 import { SocialSharing } from '@ionic-native/social-sharing';
+import {PayPal} from "@ionic-native/paypal";
+import {AngularFireModule} from "angularfire2";
+import { FirebaseProvider } from '../providers/firebase/firebase';
+import {AngularFireDatabaseModule} from "angularfire2/database";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
+export const firebaseConfig = {
+  apiKey: "AIzaSyDDOPJABmtgSbnE1pO0APWQfqqqus2E3rY",
+  authDomain: "reacueanycar.firebaseapp.com",
+  databaseURL: "https://reacueanycar.firebaseio.com",
+  projectId: "reacueanycar",
+  storageBucket: "reacueanycar.appspot.com",
+  messagingSenderId: "646728567449",
+  appId: "1:646728567449:web:536d70f128cf82fe808608",
+  measurementId: "G-L5KGPBMFHG"
+};
 
 @NgModule({
   declarations: [
@@ -36,6 +49,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -49,10 +64,12 @@ export function createTranslateLoader(http: HttpClient) {
     SplashScreen,
     StatusBar,
     FCM,
+    PayPal,
     Geolocation,
     SocialSharing,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    UtilProvider
+    UtilProvider,
+    FirebaseProvider
   ]
 })
 export class AppModule { }

@@ -41,6 +41,7 @@
       </ion-card>
     </div>
     <div *ngIf="showTruckBox" class="truck_box">
+      <div class="inner_truck_box">
         <ion-item *ngFor="let item of vehicleList" (click)="selectTruck(item)" [ngClass]="item.isSelect?'selected-bg':''" no-lines class="transparent">
           <ion-thumbnail item-start>
             <img src="assets/img/tow-icn.png">
@@ -57,6 +58,7 @@
         <div class="small-text ">Weight :{{item.weight}}</div>
         <div class="medium-bold" item-end><h2>${{item.amount}}</h2></div>
       </ion-item>-->
+    </div>
     </div>
   </div>
 </ion-content>

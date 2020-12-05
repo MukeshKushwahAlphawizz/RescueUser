@@ -7,6 +7,8 @@ import {Config, Events} from "ionic-angular/index";
 import {Storage} from "@ionic/storage";
 import {FCM} from "@ionic-native/fcm";
 import {UtilProvider} from "../providers/util/util";
+import {FirebaseProvider} from "../providers/firebase/firebase";
+
 
 @Component({
   template: `
@@ -21,6 +23,7 @@ export class MyApp {
               private config: Config,
               public fcm : FCM,
               public util : UtilProvider,
+              public fireDb : FirebaseProvider,
               public events : Events,
               private storage: Storage,
               private splashScreen: SplashScreen) {
@@ -39,6 +42,7 @@ export class MyApp {
           this.rootPage = 'LoginPage';
         }
       })
+      // this.fireDb.getAll();
     });
     this.initTranslate();
   }

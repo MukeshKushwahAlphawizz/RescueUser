@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UtilProvider} from "../../providers/util/util";
 import {User} from "../../providers";
 import {Storage} from "@ionic/storage";
+import {App} from "ionic-angular/index";
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
+
 declare var Stripe;
 declare var paypal: any;
 @IonicPage()
@@ -11,11 +14,11 @@ declare var paypal: any;
   templateUrl: 'payment.html',
 })
 export class PaymentPage {
-  testKey = 'pk_test_51Hf70NJ84uzHeLyRpzq39V3lEz6Ke4yikebOFypKLDPF28FyzPJFySYm2Hxf3qOgUlGkL6Ho8GeBrr5YFQgqvgvT00eH2zEIjz'
+  testKey = 'pk_test_51HU6ieLh9b4PD8QRemTXIzp5TidbPqNcz2E0yG9V53HVoehsrgdrT76tvta2j5uXtzqVE3KHaWdvyDRmRW56aLM700Igbn2w1a'
   stripe = Stripe(this.testKey);
   card: any;
   paymentAmount: any = '28';
-  payPalConfig = {
+  /*payPalConfig = {
     env: 'sandbox',
     client: {
       sandbox: 'AWtxst4d1DsZBHTSYyuy9tC2Kv2qzEDQdZMNeQhlOzrq4iqwHD09_iIjPpF3QNtlqMMOxOGruNtD3kQz',
@@ -31,15 +34,21 @@ export class PaymentPage {
         }
       });
     }
-  }
+  }*/
   isPaypal: boolean = false;
   userData: any = '';
+  bookingId: any = '';
+  amount: any = '';
 
   constructor(public navCtrl: NavController,
               public user: User,
               public util: UtilProvider,
+              public app: App,
+              private payPal: PayPal,
               public storage: Storage,
               public navParams: NavParams) {
+    this.bookingId = navParams.data.paymentData?navParams.data.paymentData.booking_id:'';
+    this.amount = navParams.data.paymentData?navParams.data.paymentData.amount:'';
   }
 
   ionViewDidLoad() {
@@ -54,6 +63,46 @@ export class PaymentPage {
 
   paypal() {
     this.isPaypal = true;
+    this.payPal.init({
+      PayPalEnvironmentProduction: 'YOUR_PRODUCTION_CLIENT_ID',
+      PayPalEnvironmentSandbox: 'AWtxst4d1DsZBHTSYyuy9tC2Kv2qzEDQdZMNeQhlOzrq4iqwHD09_iIjPpF3QNtlqMMOxOGruNtD3kQz'
+    }).then(() => {
+      // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+      this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+        // Only needed if you get an "Internal Service Error" after PayPal login!
+        //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+      })).then(() => {
+        let payment = new PayPalPayment('3.33', 'USD', 'Description', 'sale');
+        this.payPal.renderSinglePaymentUI(payment).then((suu) => {
+          console.log('PayPal payment success >>>',suu);
+          // Successfully paid
+
+          // Example sandbox response
+          //
+          // {
+          //   "client": {
+          //     "environment": "sandbox",
+          //     "product_name": "PayPal iOS SDK",
+          //     "paypal_sdk_version": "2.16.0",
+          //     "platform": "iOS"
+          //   },
+          //   "response_type": "payment",
+          //   "response": {
+          //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+          //     "state": "approved",
+          //     "create_time": "2016-10-03T13:33:33Z",
+          //     "intent": "sale"
+          //   }
+          // }
+        }, () => {
+          // Error or render dialog closed without being successful
+        });
+      }, () => {
+        // Error in configuration
+      });
+    }, () => {
+      // Error in initialization, maybe PayPal isn't supported or something else
+    });
   }
 
   cardPay() {
@@ -64,7 +113,7 @@ export class PaymentPage {
   }
 
   setupStripePaypal(){
-    paypal.Buttons(this.payPalConfig).render('#paypal-button');
+    // paypal.Buttons(this.payPalConfig).render('#paypal-button');
     let elements = this.stripe.elements();
     var style = {
       base: {
@@ -105,7 +154,7 @@ export class PaymentPage {
         let data : any = result;
         let last4 = data.token.card.last4;
         let cardName = data.token.card.brand;
-        this.stripPay(data.token.id,last4,cardName);
+        this.stripPay(data.token.id,last4,cardName,"stripe");
       }).catch(err=>{
         console.error(err);
         this.util.dismissLoader();
@@ -113,30 +162,24 @@ export class PaymentPage {
     });
   }
 
-  stripPay(token,last4,cardName) {
-    /*let formData = new FormData();
-    formData.append('token',token);
-    formData.append('amount',this.paymentAmount);
-    formData.append('user_id',this.userData.id);*/
+  stripPay(token,last4,cardName,method) {
     let data = {
       "user_id":this.userData.id,
-      "booking_id":"1",
+      "booking_id":this.bookingId,
       "card_holder_name":"",
-      "amount":"516.85",
+      "amount":this.amount,
       "token":token,
-      "payment_type":"stripe"
+      "payment_type":method
     }
-
     this.user.paymentBooking(data).subscribe(res=>{
       let resp : any = res;
       this.util.presentToast(resp.message);
       if (resp.status){
-        /*this.userData.is_purchased = '1';
-        this.storage.set('userData',JSON.stringify(this.userData)).then(()=>{
-          this.navCtrl.popToRoot();
-          this.navCtrl.push('PaymentSuccessfulPage',{last4:last4,cardName:cardName,
-            amount:this.paymentAmount,transactionId:resp.data.transaction_id,receiverName:resp.data.ReceiverName});
-        });*/
+        this.util.presentAlert('Payment Status',resp.message);
+        this.storage.set('currentRoute',null).then(()=>{
+          // this.navCtrl.popToRoot();
+          this.app.getRootNav().setRoot('MenuPage');
+        });
       }
       setTimeout(()=>{
         this.util.dismissLoader();

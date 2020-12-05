@@ -18,7 +18,7 @@
         <ion-row>
           <ion-col col-4></ion-col>
           <ion-col col-4 text-center class="small-text semi-bold capitalize italic">Today</ion-col>
-          <ion-col (click)="clear(false)" col-4 text-right no-padding class="small-text">Clear all</ion-col>
+          <ion-col (click)="clear(false)" col-4 text-right no-padding class="small-text">Clear</ion-col>
         </ion-row>
       </ion-grid>
       <div *ngFor="let item of notificationList">
@@ -39,7 +39,7 @@
         <ion-row>
           <ion-col col-4></ion-col>
           <ion-col col-4 text-center class="small-text semi-bold capitalize italic">Yesterday</ion-col>
-          <ion-col (click)="clear(false)" col-4 text-right no-padding class="small-text">Clear</ion-col>
+          <ion-col (click)="clear(false)" col-4 text-right no-padding class="small-text">Clear all</ion-col>
         </ion-row>
       </ion-grid>
       <div *ngFor="let item of notificationList">

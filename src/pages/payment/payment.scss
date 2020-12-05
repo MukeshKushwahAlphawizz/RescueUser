@@ -10,10 +10,11 @@ page-payment {
         padding: 17px 35px;
         margin-bottom: 5rem;
     }
-    button.purple_bg {
+
+    button.paypal, button.card {
         width: 95%;
     }
-    button.purple_bg .icon {
+    button.paypal .icon, button.card .icon {
         margin-left: 5px;
     }
     .card_field label {
@@ -37,11 +38,11 @@ page-payment {
     .card_field {
         margin-top: 3rem;
     }
-    .signin-btn button.purple_bg {
+    .signin-btn button.paypal,.signin-btn button.card {
         width: 100%;
         min-height: 4.3rem;
     }
-    button.purple_bg.paypal {
+    .purple_bg {
         background: #AD7DA3;
     }
     .card_input input {
@@ -53,7 +54,7 @@ page-payment {
     }
   .pay-now{
     position: absolute;
-    bottom: 0;
-    width: 80%;
+    bottom: 10pt;
+    width: 75%;
   }
 }

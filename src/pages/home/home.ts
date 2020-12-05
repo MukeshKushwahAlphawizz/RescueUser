@@ -34,6 +34,7 @@ export class HomePage {
   selectedItem: any = {};
   vehicleList : any = [];
   bookingId : any = '';
+
   constructor(public viewCtrl: ViewController,
               public navCtrl: NavController,
               public user: User,
@@ -51,8 +52,9 @@ export class HomePage {
   }
 
   loadMap(){
+
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log('lat',resp.coords.latitude,'lng',resp.coords.longitude);
+      // console.log('lat',resp.coords.latitude,'lng',resp.coords.longitude);
       let rawData = {
         "user_id":this.userData.id,
         "latitude":resp.coords.latitude,
@@ -68,6 +70,10 @@ export class HomePage {
       }
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       this.addMarker()
+      this.map.on(new google.maps.event.MAP_CLICK, function(latLng) {
+        alert("Map is clicked.\n" + latLng.toUrlValue());
+        console.log("Map is clicked.");
+      });
     }).catch(err=>{
       let latLng = new google.maps.LatLng(-34.9290, 138.6010);
       let mapOptions = {
@@ -144,16 +150,20 @@ export class HomePage {
   }
 
   confirm() {
-    let data = {
-      user_id:this.userData.id,
-      driver_id:this.selectedItem.driver_id,
-      vehicle_type:this.selectedItem.id,
-      booking_id:this.bookingId,
-      pick_date:"",
-      pick_time:"",
+    if (this.selectedItem.id){
+      let data = {
+        user_id:this.userData.id,
+        driver_id:this.selectedItem.driver_id,
+        vehicle_type:this.selectedItem.id,
+        booking_id:this.bookingId,
+        pick_date:"",
+        pick_time:"",
+      }
+      this.showTruckBox=false;
+      this.navCtrl.push('FillDetailsPage',{requestData : data,source:this.source, destination:this.destination});
+    }else {
+      this.util.presentToast('Please select any one Available Driver');
     }
-    this.showTruckBox=false;
-    this.navCtrl.push('FillDetailsPage',{requestData : data,source:this.source, destination:this.destination});
   }
   getUserData() {
     this.storage.get('userData').then(userData=>{

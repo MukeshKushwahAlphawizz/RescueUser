@@ -53,4 +53,8 @@ export class FillDetailsPage {
   notification() {
     this.navCtrl.push('NotificationsPage')
   }
+
+  edit() {
+    this.navCtrl.pop();
+  }
 }

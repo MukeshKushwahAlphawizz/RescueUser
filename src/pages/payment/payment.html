@@ -6,7 +6,6 @@
             <button ion-button icon-only light class="text-white">
             </button>
           </ion-buttons>
-
     </ion-navbar>
 </ion-header>
 
@@ -15,20 +14,20 @@
   <h6 padding class="italic"> <ion-icon name="checkmark-circle-outline"></ion-icon> Driver Accepted Your Request</h6>
   <div class="details_list">
     <p class="medium-bold">Total Price</p>
-    <h4>$60</h4>
+    <h4>${{amount}}</h4>
     <span>Payment Method</span>
 
     <ion-grid class="grid_list" no-padding margin-top>
       <ion-row>
         <ion-col col-6 class="">
-          <button (click)="paypal()" no-margin ion-button full
-                  class="paypal medium-bold purple_bg capitalize no-shadow text-black redius-7">
+          <button (click)="paypal()" no-margin ion-button full [ngClass]="isPaypal?'purple_bg':''"
+                  class="paypal medium-bold capitalize no-shadow text-black redius-7">
             PayPal  <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
           </button>
         </ion-col>
         <ion-col col-6 class="right-line">
-          <button (click)="cardPay()" no-margin ion-button full
-                  class="purple_bg medium-bold capitalize no-shadow redius-7">
+          <button (click)="cardPay()" no-margin ion-button full [ngClass]="isPaypal?'':'purple_bg'"
+                  class="card medium-bold capitalize no-shadow redius-7">
             Card  <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
           </button>
         </ion-col>
@@ -46,7 +45,7 @@
           <div id="card-errors" role="alert"></div>
         </div>
         <div text-center class="pay-now">
-          <button (click)="payNow()" no-margin ion-button full class="purple_bg no-shadow">PAY NOW</button>
+          <button (click)="payNow()" no-margin ion-button full class="no-shadow">PAY NOW</button>
         </div>
         <!--<button class="text-white text-transfrom pay-button" ion-button round>Process to pay</button>-->
         <!--<div margin text-center><button margin-top ion-button round small>Pay</button></div>-->
