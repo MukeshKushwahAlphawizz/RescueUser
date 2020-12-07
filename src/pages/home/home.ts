@@ -52,9 +52,8 @@ export class HomePage {
   }
 
   loadMap(){
-
     this.geolocation.getCurrentPosition().then((resp) => {
-      // console.log('lat',resp.coords.latitude,'lng',resp.coords.longitude);
+      console.log('lat',resp.coords.latitude,'lng',resp.coords.longitude);
       let rawData = {
         "user_id":this.userData.id,
         "latitude":resp.coords.latitude,
@@ -70,11 +69,12 @@ export class HomePage {
       }
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       this.addMarker()
-      this.map.on(new google.maps.event.MAP_CLICK, function(latLng) {
-        alert("Map is clicked.\n" + latLng.toUrlValue());
+      /*this.map.on(new google.maps.event.MAP_CLICK, function(latLng) {
+        //alert("Map is clicked.\n" + latLng.toUrlValue());
         console.log("Map is clicked.");
-      });
+      });*/
     }).catch(err=>{
+      console.log('google map error :',err);
       let latLng = new google.maps.LatLng(-34.9290, 138.6010);
       let mapOptions = {
         center: latLng,
