@@ -6,36 +6,55 @@ import {AngularFireDatabase} from "angularfire2/database";
 
 @Injectable()
 export class FirebaseProvider {
-  items: Observable<any[]>;
+  chats: Observable<any[]>;
+  users: Observable<any[]>;
+  chatRef :any;
+  userRef :any;
   constructor(public http: HttpClient,public db : AngularFireDatabase) {
-    console.log('Hello FirebaseProvider Provider');
   }
 
-  getAll(){
-    /*const itemRef = this.db.object('reacueanycar'); //add object
-    itemRef.set({ name: 'new name!'});*/
-
-    /*const itemRef = this.db.object('reacueanycar'); //udate object
-    itemRef.update({ age: 12 });*/
-
-    /*const itemRef = this.db.object('reacueanycar/age');
-    itemRef.remove();*/
-
-    this.items = this.db.list('/').valueChanges();
-
-    this.items.subscribe(data=>{
-      console.log('list data is >>>',data);
+  addUser(customer,driverId) {
+    let users : any = this.db.list('/all-users/'+driverId).valueChanges();
+    let disposeMe = users.subscribe(item=>{
+      let userArr : any = item;
+      let isUserAvailable : boolean = false;
+      userArr.filter(item=>{
+        if (item.id === customer.id){
+          //user is already in the list
+          isUserAvailable = true;
+          return;
+        }
+      })
+      disposeMe.unsubscribe();
+      if (!isUserAvailable){
+        this.userRef = this.db.database.ref('/all-users/'+driverId);
+        this.userRef.push(customer).then(() =>{})
+      }
     });
+  }
+  getAllUsers(userId){
+    this.users = this.db.list('/all-users/'+userId).valueChanges();
+    return this.users;
+  }
 
-
-    let itemRef = this.db.object('reacueanycar');
-    itemRef.snapshotChanges().subscribe(action => {
-      console.log(action);
-      console.log(action.type);
-      console.log(action.key)
-      console.log(action.payload.val())
+  getFirstChat(customerDriverId){
+    this.chats = this.db.list('/all-chats/'+customerDriverId,
+      ref => ref.limitToLast(1)).valueChanges();
+    return this.chats;
+  }
+  addMessage(message,ref) {
+    return new Promise((resolve, reject) => {
+      this.chatRef = this.db.database.ref('/all-chats/'+ref);
+      this.chatRef.push(message).then(() =>{
+        resolve(true);
+      }).catch(()=>{
+        reject(false);
+      });
     });
-    // console.log('getAll item >>>',this.items);
+  }
+  getAllUserChats(customerDriverId){
+    this.chats = this.db.list('/all-chats/'+customerDriverId).valueChanges();
+    return this.chats;
   }
 
 }

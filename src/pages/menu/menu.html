@@ -3,7 +3,7 @@
       <ion-list>
         <ion-item menuToggle no-lines padding-top class="user-div" (click)="edit_profile()">
           <div item-start >
-            <img [src]="userData.image && userData.image !==''&& userData.image !=='https://alphawizz.org/Rescue//https://alphawizz.org/Rescue/'?userData.image:'assets/img/user.png'">
+            <img [src]="userData.image && userData.image !==''&& userData.image !=='https://alphawizz.com/Rescue/'?userData.image:'assets/img/user.png'">
           </div>
           <div>
             <h2 text-wrap class="medium-bold">{{userData.first_name&&userData.last_name?userData.first_name+' '+userData.last_name:'No Name'}}</h2>

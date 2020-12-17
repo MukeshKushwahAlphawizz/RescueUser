@@ -4,7 +4,7 @@ import {AlertController, Loading, LoadingController, ToastController} from "ioni
 import {Camera} from "@ionic-native/camera";
 import {User} from "..";
 import {Storage} from "@ionic/storage";
-/*import moment from "moment";*/
+import moment from "moment";
 
 
 @Injectable()
@@ -142,8 +142,9 @@ export class UtilProvider {
   }
 
   timeSince(date:any) {
-    // return moment(date).fromNow()
+    return moment(date).fromNow()
   }
+
   randomImg(){
     let randomNumber = Math.floor(Math.random() * 1000) + 1;
     return "image" + randomNumber;

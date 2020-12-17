@@ -5,6 +5,7 @@ import {App, Events} from "ionic-angular/index";
 import {Storage} from "@ionic/storage";
 import {UtilProvider} from "../../providers/util/util";
 import {User} from "../../providers";
+import {FirebaseProvider} from "../../providers/firebase/firebase";
 declare var google;
 
 @IonicPage()
@@ -27,13 +28,16 @@ export class LiveTrackingPage {
   routeDetail:any={}
   driver_id:any={}
   booking_id:any={}
-  private interval: any;
+  currentRoute:any={}
+  userData:any={}
+  interval: any;
 
   constructor(public navCtrl: NavController,
               public app: App,
               public util:UtilProvider,
               public user : User,
               public events : Events,
+              public firedb: FirebaseProvider,
               public storage: Storage,
               public navParams: NavParams) {
     this.events.subscribe('tripEnded',data=>{
@@ -42,6 +46,7 @@ export class LiveTrackingPage {
       }
     })
     this.events.subscribe('tripStarted',data=>{
+      console.log('Trip started >> data is >>',JSON.stringify(data));
       this.driver_id = JSON.parse(data.booking_info).driver_id;
       if (this.interval){
         clearInterval(this.interval);
@@ -52,8 +57,10 @@ export class LiveTrackingPage {
     })
   }
   ionViewDidEnter(){
+    this.getUserData();
     this.storage.get('currentRoute').then(currentRoute=>{
       console.log('currentRoute>>>>>',currentRoute);
+      this.currentRoute = currentRoute;
       if (currentRoute && currentRoute.types_id){
         this.booking_id = currentRoute.types_id;
         this.getRouteDetail(this.booking_id);
@@ -81,7 +88,16 @@ export class LiveTrackingPage {
     });
   }
   chat() {
-    this.navCtrl.push('ChatPage')
+    let driverData = {
+      date_of_join:new Date().getTime(),
+      id:this.currentRoute.driver_id+'_D',
+      image:this.currentRoute.driver_image,
+      isDriver:true,
+      name:this.currentRoute.driver_name,
+    }
+    this.firedb.addUser(driverData,this.userData.id+'_C');
+    let chatRef = this.userData.id+'_C'+'-'+driverData.id;
+    this.navCtrl.push("ChatPage",{chatRef:chatRef,driver:driverData,customer:this.userData});
   }
   payment() {
     let paymentData : any = {
@@ -180,5 +196,11 @@ export class LiveTrackingPage {
         this.calculateAndDisplayRoute(to,from,this.routeDetail);
       }
     },error => {})
+  }
+
+  getUserData() {
+    this.storage.get('userData').then(userData=>{
+      this.userData = JSON.parse(userData);
+    })
   }
 }

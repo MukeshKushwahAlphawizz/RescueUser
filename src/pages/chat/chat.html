@@ -1,113 +1,51 @@
-<!--
-  Generated template for the ChatPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header class="top-header">
   <ion-navbar>
-
-    <ion-title text-center>John Deo</ion-title>
-    
+    <ion-title text-center>{{driver && driver.name?driver.name:''}}</ion-title>
     <ion-buttons right class="notification_icn" (click)="notification()">
-        <button ion-button icon-only light class="text-white">
-            <img src="assets/img/notifications.png">       
-        </button>
+      <button ion-button icon-only light class="text-white">
+        <img src="assets/img/notifications.png">
+      </button>
     </ion-buttons>
-    
   </ion-navbar>
 </ion-header>
-
-
 <ion-content padding class="main-bg">
-        
-  <div class="chat_box">
-
-      <div class="chat_left">
-              <img src="assets/img/chat_prfl.png">   
-              <div class="message_box">
-                      <p class="small-text medium-bold">10:22 am</p>
-                      <span class="redius-7">Hey, Whats Ur Plan Today ?</span>
-              </div>
+  <div *ngIf="isListEmpty" class="bold big-text" text-center padding margin>No chats are available</div>
+  <div *ngIf="!isListEmpty">
+    <div *ngFor="let chat of chats" class="chat_box">
+      <div *ngIf="chat.isDriver" class="chat_left">
+        <img [src]="driver.image && driver.image !=='' ? driver.image:'assets/img/user.png'">
+        <div class="message_box">
+          <p class="small-text medium-bold">{{util.timeSince(chat.date)}}</p>
+          <span class="redius-7">{{chat.message}}</span>
+        </div>
       </div>
-      <div class="chat_right" text-right> 
-                <div class="message_box">
-                        <p class="small-text medium-bold">10:24 am</p>
-                        <span class="redius-7">Hey, Whats up? mmm.. Nothing special for now.</span>
-                </div>                  
-              
-              <img src="assets/img/chat_prfl.png">  
+      <div *ngIf="!chat.isDriver" class="chat_right" text-right>
+        <div class="message_box">
+          <p class="small-text medium-bold">{{util.timeSince(chat.date)}}</p>
+          <span class="redius-7">{{chat.message}}</span>
+        </div>
+        <img [src]="customer.image && customer.image !==''&& customer.image !=='https://alphawizz.com/Rescue/'?customer.image:'assets/img/user.png'">
       </div>
-      <div class="chat_left">
-              <img src="assets/img/chat_prfl.png">   
-              <div class="message_box">
-                        <p class="small-text medium-bold">10:25 am</p>
-                        <span class="redius-7">Great! I’ill Pick you in a moment.</span>
-                </div>
-              
-      </div>
-      <div class="chat_right" text-right>   
-                <div class="message_box">
-                        <p class="small-text medium-bold">10:27 am</p>
-                        <span class="redius-7">Okay i m waiting...</span>
-                </div>                  
-              
-              <img src="assets/img/chat_prfl.png">  
-      </div>
-      <div class="chat_left">
-              <img src="assets/img/chat_prfl.png"> 
-              <div class="message_box">
-                        <p class="small-text medium-bold">10:30 am</p>
-                        <span class="redius-7">Hey, Whats Ur Plan Today ?</span>
-                </div>  
-             
-      </div>
-      <div class="chat_right" text-right>   
-                <div class="message_box">
-                        <p class="small-text medium-bold">10:32 am</p>
-                        <span class="redius-7">Hey, Whats up? mmm.. Nothing special for now.</span>
-                </div>              
-              
-              <img src="assets/img/chat_prfl.png">  
-      </div>
-      <div class="chat_left">
-              <img src="assets/img/chat_prfl.png">   
-              <div class="message_box">
-                        <p class="small-text medium-bold">10:32 am</p>
-                        <span class="redius-7">Hey, Whats Ur Plan Today ?</span>
-                </div>
-      </div>
-      <div class="chat_right" text-right>        
-                <div class="message_box">
-                        <p class="small-text medium-bold">10:22 am</p>
-                        <span class="redius-7">Okay i m waiting...</span>
-                </div>         
-              
-              <img src="assets/img/chat_prfl.png">  
-      </div>
+    </div>
   </div>
-  
-
-
+  <emoji-picker *ngIf="toggled" [hidden]="toggled" [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'bottom'"
+                (emojiPickerSelect)="handleSelection($event)"></emoji-picker>
 </ion-content>
 
 <ion-footer>
   <ion-list no-margin>
-      <ion-item no-padding>
-
-          <button item-start class="transparent text-black emoji">
-                  <img src="assets/img/emoji.png">         
-          </button>
-
-          <input type="text" placeholder="Type Your Message...">
-
-          <button item-end class="transparent send_btn">
-                  <img src="assets/img/send_icn.png">      
-          </button>
-
-      </ion-item>
-    </ion-list>
-
-  
-  
+    <ion-item no-padding>
+      <button ion-button clear (click)="toggled = !toggled" item-start class="transparent text-black emoji">
+        <img src="assets/img/emoji.png">
+      </button>
+      <!--<button ion-button clear icon-only (click)="toggled = !toggled" [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'top'"
+              (emojiPickerSelect)="handleSelection($event)">
+        <ion-icon name="md-happy"></ion-icon>
+      </button>-->
+      <input [(ngModel)]="msg" type="text" placeholder="Type Your Message...">
+      <button (click)="sendMessage()" item-end class="transparent send_btn">
+        <img src="assets/img/send_icn.png">
+      </button>
+    </ion-item>
+  </ion-list>
 </ion-footer>

@@ -29,9 +29,9 @@ export class SummaryPage {
       let item : any =res;
       this.isRequestAccepted = true;
       util.dismissLoader();
-      console.log('JSON.parse(item.booking_info)',JSON.parse(item.booking_info));
+      // console.log('JSON.parse(item.booking_info)',JSON.parse(item.booking_info));
       item.types_id = JSON.parse(item.booking_info).id; //set booking id into types_id for live tracking page
-      console.log('item is >>>>>',item);
+      // console.log('item is >>>>>',item);
       this.storage.set('currentRoute',item).then(()=>{
         this.navCtrl.setRoot('LiveTrackingPage');
       })

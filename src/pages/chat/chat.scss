@@ -9,13 +9,14 @@ page-chat {
     .chat_left img, .chat_right img {
         width: 35px;
         height: 35px;
+      object-fit: cover;
         border-radius: 50%;
     }
     .chat_left .message_box {
         float: left;
         margin-left: 5px;
     }
-        
+
     .small-text {
         font-size: 1.1rem;
         margin: 0px 0px 5px;
@@ -61,7 +62,7 @@ page-chat {
     }
     .footer input::placeholder{
         color: #3B3B3B;
-    }    
+    }
     .footer button.send_btn {
         margin: 7px 0px 0px 0px;
     }

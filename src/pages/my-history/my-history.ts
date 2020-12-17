@@ -4,6 +4,7 @@ import {App} from "ionic-angular/index";
 import {UtilProvider} from "../../providers/util/util";
 import {User} from "../../providers";
 import {Storage} from "@ionic/storage";
+import {FirebaseProvider} from "../../providers/firebase/firebase";
 
 @IonicPage()
 @Component({
@@ -17,6 +18,7 @@ export class MyHistoryPage {
   constructor(public navCtrl: NavController,
               public util : UtilProvider,
               public user : User,
+              public firedb : FirebaseProvider,
               public storage : Storage,
               public app : App,
               public navParams: NavParams) {
@@ -51,8 +53,17 @@ export class MyHistoryPage {
     })
   }
 
-  chat() {
-    this.app.getRootNav().push('ChatPage');
+  chat(driver) {
+    let driverData = {
+      date_of_join:new Date().getTime(),
+      id:driver.driver_id+'_D',
+      image:driver.driver_image,
+      isDriver:true,
+      name:driver.driver_name,
+    }
+    this.firedb.addUser(driverData,this.userData.id+'_C');
+    let chatRef = this.userData.id+'_C'+'-'+driverData.id;
+    this.app.getRootNav().push("ChatPage",{chatRef:chatRef,driver:driverData,customer:this.userData});
   }
 
   startTracking(item: any) {
