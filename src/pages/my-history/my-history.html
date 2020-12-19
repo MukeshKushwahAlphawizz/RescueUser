@@ -1,18 +1,3 @@
-<ion-header class="top-header">
-  <ion-navbar>
-    <ion-buttons no-margin left class="drover_icn">
-      <button  no-margin ion-button icon-only menuToggle>
-        <img src="assets/img/menu_icon.png">
-      </button>
-    </ion-buttons>
-    <ion-title text-center>My History</ion-title>
-    <ion-buttons right class="notification_icn" (click)="notification()">
-      <button ion-button icon-only light class="text-white">
-        <img src="assets/img/notifications.png">
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
 <ion-content  class="list-avatar-page driver_list main-bg">
   <div padding-top text-center margin-top class="bold big-text" *ngIf="isListEmpty">No pending jobs are available</div>
   <div *ngIf="!isListEmpty">
@@ -20,9 +5,7 @@
       <div *ngFor="let item of historyList" class="history_list">
         <ion-row>
           <ion-col col-2 no-padding>
-            <ion-thumbnail>
-              <img src="assets/img/dummy_pic.png">
-            </ion-thumbnail>
+            <img class="img-driver" [src]="item.driver_image&&item.driver_image!==''?item.driver_image:'assets/img/dummy_pic.png'">
           </ion-col>
           <ion-col col-10 no-padding>
             <ion-item class="btn_box">

@@ -104,7 +104,7 @@ export class LiveTrackingPage {
       amount:this.routeDetail.amount,
       booking_id:this.booking_id
     }
-    console.log(paymentData);
+    // console.log(paymentData);
     this.navCtrl.push('PaymentPage',{paymentData:paymentData})
   }
   notification() {

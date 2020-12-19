@@ -29,7 +29,7 @@
           </ion-avatar>
           <div class="small-text medium-bold">{{item.message}}</div>
           <div *ngIf="item.types == '2'" text-right>
-            <button class="Chatnow_btn no-shadow text-white">CHAT WITH DRIVER</button>
+            <button (click)="openChat(item)" class="Chatnow_btn no-shadow text-white">CHAT WITH DRIVER</button>
             <button (click)="startLiveTracking(item)" class="tracking_btn no-shadow text-white">START LIVE TRACKING</button>
           </div>
         </ion-item>
@@ -50,7 +50,7 @@
             </ion-avatar>
             <div class="small-text medium-bold">{{item.message}}</div>
             <div *ngIf="item.types == '2'" text-right>
-              <button class="Chatnow_btn no-shadow text-white">CHAT WITH DRIVER</button>
+              <button (click)="openChat(item)" class="Chatnow_btn no-shadow text-white">CHAT WITH DRIVER</button>
               <button (click)="startLiveTracking(item)" class="tracking_btn no-shadow text-white">START LIVE TRACKING</button>
             </div>
           </ion-item>

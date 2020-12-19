@@ -19,4 +19,7 @@ export class TabsPage {
 
   }
 
+  notification() {
+    this.navCtrl.push('NotificationsPage');
+  }
 }

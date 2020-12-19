@@ -72,12 +72,4 @@ export class MyHistoryPage {
       this.app.getRootNav().setRoot('MenuPage');
     })
   }
-
-  Tracking() {
-    this.app.getRootNav().setRoot('LiveTrackingPage');
-  }
-
-  notification(){
-    this.app.getRootNav().push('NotificationsPage');
-  }
 }

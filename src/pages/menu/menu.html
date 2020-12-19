@@ -17,7 +17,7 @@
             <img item-left class="menu-icons" src="assets/img/home.png">
             <div class="text-white medium-text">Home</div>
           </ion-item>
-          <ion-item no-padding menuToggle no-lines  class="small-text transparent" (click)="openPage('TabsPage')">
+          <ion-item no-padding menuToggle no-lines  class="small-text transparent" (click)="openHistoryPage('TabsPage')">
             <img item-left class="menu-icons" src="assets/img/history.png">
             <div class="text-white medium-text">My History</div>
           </ion-item>
@@ -37,13 +37,8 @@
             <img item-left class="menu-icons" src="assets/img/logout.png">
             <div class="text-white medium-text">Exit</div>
           </ion-item>
-          <!-- <ion-item no-padding menuToggle no-lines (click)="openPage('ChatListPage')" class="small-text transparent">
-              <img item-left class="menu-icons" src="assets/img/chat.png">
-              <div class="text-white medium-text">Chatlist</div>
-            </ion-item> -->
         </div>
       </ion-list>
     </ion-content>
   </ion-menu>
-
-  <ion-nav #content [root]="rootPage"></ion-nav>
+<ion-nav #content [root]="rootPage"></ion-nav>

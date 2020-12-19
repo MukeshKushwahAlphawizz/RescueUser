@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {User} from "../../providers";
 import {UtilProvider} from "../../providers/util/util";
 import {Storage} from "@ionic/storage";
+import {FirebaseProvider} from "../../providers/firebase/firebase";
 
 @IonicPage()
 @Component({
@@ -23,6 +24,7 @@ export class NotificationsPage {
               public user: User,
               public util: UtilProvider,
               public storage: Storage,
+              public firedb: FirebaseProvider,
               public navParams: NavParams) {
     this.isFromLiveTracking = navParams.data.fromLiveTracking;
   }
@@ -183,5 +185,19 @@ export class NotificationsPage {
         this.navCtrl.setRoot('MenuPage');
       }
     })
+  }
+
+  openChat(driver) {
+    console.log(driver);
+    let driverData = {
+      date_of_join:new Date().getTime(),
+      id:driver.driver_id+'_D',
+      image:driver.driver_image,
+      isDriver:true,
+      name:driver.driver_name,
+    }
+    this.firedb.addUser(driverData,this.userData.id+'_C');
+    let chatRef = this.userData.id+'_C'+'-'+driverData.id;
+    this.navCtrl.push("ChatPage",{chatRef:chatRef,driver:driverData,customer:this.userData});
   }
 }

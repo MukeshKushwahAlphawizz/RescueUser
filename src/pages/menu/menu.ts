@@ -4,11 +4,6 @@ import {Storage} from "@ionic/storage";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {UtilProvider} from "../../providers/util/util";
 
-interface PageItem {
-  title: string
-  component: any
-}
-
 @IonicPage()
 @Component({
   selector: 'page-menu',
@@ -39,6 +34,9 @@ export class MenuPage {
 
   openPage(page) {
     this.nav.setRoot(page);
+  }
+  openHistoryPage(page) {
+    this.nav.push(page);
   }
   help() {
     this.navCtrl.push('HelpPage');

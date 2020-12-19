@@ -5,13 +5,13 @@ page-my-history {
         text-transform: capitalize;
         padding: 10px 18px;
         margin: 0px 0px 0px 8px;
-    }    
+    }
     .Chatnow_btn {
         background: #0099FF;
     }
     .tracking_btn{
         background: #12A22A;
-    }    
+    }
     .driver_pic img{
         width: 65px;
     }
@@ -25,7 +25,7 @@ page-my-history {
     }
     .driver_list span{
         font-size: 1rem;
-    }    
+    }
     .driver_list .item {
         min-height: inherit;
         padding-right: 10px;
@@ -36,18 +36,24 @@ page-my-history {
     }
     .driver_list .label-md {
         margin: 3px 0px;
-    }    
+    }
     .driver_list .item span, .driver_list .item.btn_box h2 {
         margin: 0px 8px 6px 0;
     }
     .driver_list .card .item span {
         font-size: 0.8rem;
         margin: 0px;
-    }   
+    }
     .history_list {
         background-image: url(../assets/img/white_bg.png);
         background-size: 100% 100%;
         background-repeat: no-repeat;
         padding: 20px 30px;
     }
-}   
+  .img-driver{
+    width: 35pt;
+    height: 35pt;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
