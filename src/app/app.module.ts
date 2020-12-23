@@ -23,6 +23,7 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+/*Client account*/
 export const firebaseConfig = {
   apiKey: "AIzaSyDDOPJABmtgSbnE1pO0APWQfqqqus2E3rY",
   authDomain: "reacueanycar.firebaseapp.com",
@@ -33,6 +34,18 @@ export const firebaseConfig = {
   appId: "1:646728567449:web:536d70f128cf82fe808608",
   measurementId: "G-L5KGPBMFHG"
 };
+
+/*mukesh account*/
+/*export const firebaseConfig = {
+  apiKey: "AIzaSyA-XfTOLWBWP0-Yeg2jrjsfsbonePzICHk",
+  authDomain: "rescuecustomer.firebaseapp.com",
+  databaseURL: "https://rescuecustomer.firebaseio.com",
+  projectId: "rescuecustomer",
+  storageBucket: "rescuecustomer.appspot.com",
+  messagingSenderId: "511371251797",
+  appId: "1:511371251797:web:238a21448619c4619684dc",
+  measurementId: "G-VP9QTPSVJM"
+};*/
 
 @NgModule({
   declarations: [

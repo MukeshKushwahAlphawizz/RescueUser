@@ -17,6 +17,7 @@ export class User {
   deleteAccountUrl : string = 'Authentication/DeleteAccount';
   getContentUrl : string = 'Authentication/getcontent';
   send_pickup_location : string = 'Users/send_pickup_location';
+  get_nearby_driver_list : string = 'Users/get_nearby_driver_list';
 
   booking_request : string = 'Users/booking_request';
   booking_request_confirm : string = 'Users/booking_request_confirm';
@@ -123,6 +124,10 @@ export class User {
   }
   getDriverLatLng(data: any) {
     let res = this.api.post(this.driver_current_status, data).share();
+    return res;
+  }
+  getNearbyDriverList(data: any) {
+    let res = this.api.post(this.get_nearby_driver_list, data).share();
     return res;
   }
 }

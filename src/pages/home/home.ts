@@ -33,6 +33,9 @@ export class HomePage {
   selectedItem: any = {};
   vehicleList : any = [];
   bookingId : any = '';
+  nearbyDrivers:any=[];
+  markers: any[] = [];
+  mapEventTimeout: any;
 
   constructor(public viewCtrl: ViewController,
               public navCtrl: NavController,
@@ -49,51 +52,6 @@ export class HomePage {
     this.getUserData();
     this.loadMap();
   }
-
-  loadMap(){
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      disableDefaultUI: true,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {
-      console.log('lat >>',resp.coords.latitude,'lng >>',resp.coords.longitude);
-      let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-      this.addNewMarker(latLng);
-    }).catch(err=>{
-      console.log('google map error :',err);
-    });
-
-    /*this.map.addListener("center_changed", () => {
-      // 3 seconds after the center of the map has changed, pan back to the
-      // marker.
-      window.setTimeout(() => {
-        let lat = this.map.getCenter().lat();
-        let lng = this.map.getCenter().lng();
-        console.log('map center changed !!!',lat,lng);
-      }, 3000);
-    });*/
-  }
-
-  addNewMarker(location) {
-    let marker = new google.maps.Marker({
-      position: location,
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-    });
-    this.map.setCenter(location);
-  }
-  addMarker(){
-    let marker = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
-    });
-  }
-
   request() {
     if (this.source.trim() === ''){
       this.util.presentToast('Please select Pickup Location');
@@ -137,7 +95,6 @@ export class HomePage {
   notification() {
     this.navCtrl.push('NotificationsPage')
   }
-
   selectTruck(item: any) {
     this.vehicleList.filter(vehicle=>{
       if (vehicle.id === item.id){
@@ -148,7 +105,6 @@ export class HomePage {
       }
     })
   }
-
   confirm() {
     if (this.selectedItem.id){
       let data = {
@@ -225,4 +181,105 @@ export class HomePage {
     }).catch(err=>{
     });
   }
+
+
+  // Adds a marker to the map and push to the array.
+  addMarker(location) {
+    const marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      icon: 'assets/img/truck-map.png'
+    });
+    this.markers.push(marker);
+  }
+
+// Sets the map on all markers in the array.
+  setMapOnAll(map: any) {
+    for (let i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(map);
+    }
+  }
+
+// Removes the markers from the map, but keeps them in the array.
+  clearMarkers() {
+    this.setMapOnAll(null);
+  }
+
+// Shows any markers currently in the array.
+  showMarkers() {
+    this.setMapOnAll(this.map);
+  }
+
+// Deletes all markers in the array by removing references to them.
+  deleteMarkers() {
+    this.clearMarkers();
+    this.markers = [];
+  }
+
+  loadMap(){
+    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      disableDefaultUI: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {
+      // console.log('lat >>',resp.coords.latitude,'lng >>',resp.coords.longitude);
+      let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+      this.addNewMarker(latLng);
+    }).catch(err=>{
+      console.log('google map error :',err);
+    });
+
+    this.map.addListener("center_changed", () => {
+      // 3 seconds after the center of the map has changed, pan back to the
+      // marker.
+      if (this.mapEventTimeout){
+        clearTimeout(this.mapEventTimeout);
+      }
+      this.mapEventTimeout = setTimeout(() => {
+        let lat = this.map.getCenter().lat();
+        let lng = this.map.getCenter().lng();
+        // console.log('map center changed !!!',lat,lng);
+        if (this.userData && this.userData.id){
+          let data = {
+            "user_id":this.userData.id,
+            "latitude": lat,
+            "longitude": lng
+          }
+          this.user.getNearbyDriverList(data).subscribe(res=>{
+            let resp : any = res;
+            if (resp.status){
+              this.nearbyDrivers = resp.data;
+            }else {
+              this.nearbyDrivers = [];
+            }
+            this.clearMarkers();
+            this.nearbyDrivers.map(item=>{
+              let latLng = new google.maps.LatLng(item.latitude, item.longitude);
+              this.addMarker(latLng);
+            })
+          })
+        }
+      }, 500);
+    });
+  }
+  addNewMarker(location) {
+    let marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+    });
+    this.map.setCenter(location);
+    // this.markers.push(marker);
+  }
+  /*addMarker(){
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
+    });
+  }*/
 }
