@@ -53,7 +53,9 @@ export class MenuPage {
 
   exit() {
     this.util.presentConfirm('Are you Sure?','You want to Exit the app.').then(()=>{
-      this.platform.exitApp();
+      //this.platform.exitApp();
+          this.storage.set('userData',null);
+          this.navCtrl.setRoot('LoginPage');
     }).catch(()=>{
 
     })

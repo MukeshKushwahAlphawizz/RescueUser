@@ -1,7 +1,7 @@
 <ion-header class="top-header">
   <ion-navbar>
     <ion-title text-center>Fill Details</ion-title>
-    <ion-buttons right class="notification_icn" (click)="notification()">
+    <ion-buttons right class="notification_icn" (click)="notification()" *ngIf="userData">
       <button ion-button icon-only light class="text-white">
         <img src="assets/img/notifications.png">
       </button>
@@ -27,7 +27,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-list>
+  <ion-list *ngIf="userData">
     <ion-item class="round_bg">
       <ion-thumbnail item-start>
         <img src="assets/img/car-img.png">

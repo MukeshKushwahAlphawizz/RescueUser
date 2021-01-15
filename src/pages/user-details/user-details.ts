@@ -5,7 +5,9 @@ import {User} from "../../providers";
 import {Storage} from "@ionic/storage";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActionSheetController} from "ionic-angular/index";
+
 declare var google;
+
 @IonicPage()
 @Component({
   selector: 'page-user-details',

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Api {
-  url: string = 'https://alphawizz.com/Rescue/Api/';
+  url: string = 'https://alphawizz.in/Rescue/Api/';
   // url: string = 'https://alphawizz.org/Rescue/Api/';
 
   constructor(public http: HttpClient) {

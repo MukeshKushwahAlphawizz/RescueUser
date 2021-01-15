@@ -82,6 +82,7 @@ export class NotificationsPage {
           })
           this.notificationList.length > 0 ? this.isListEmpty = false: this.isListEmpty = true;
           this.pageNumber = this.pageNumber + 1;
+          console.log(this.notificationList,this.isListEmpty);
           resolve('');
         }else {
           pageNumber==1? this.notificationList = []:'';
@@ -121,17 +122,18 @@ export class NotificationsPage {
     })
   }
 
-  clear(isClearAll: boolean) {
+  clear(isClearAll: boolean,isPast) {
     let d : any = new Date();
     let yesterday : any = '';
     if (isClearAll){
        yesterday = d.setDate(d.getDate() - 1);
+       yesterday = new Date(yesterday);
     }
     let data = {
       "user_id":this.userData.id,
       "user_type":"1",
       "is_clear":isClearAll?'1':'2',
-      "notification_date":isClearAll?yesterday.getTime():d.getTime()
+      "notification_date":isPast?'':isClearAll?yesterday.getTime():d.getTime()
     }
     this.util.presentConfirm('Clear notification','Are you sure want to clear?').then(succ=>{
       this.util.presentLoader('Clearing..');

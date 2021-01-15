@@ -18,10 +18,10 @@
           <span>Total Fare Amount</span>
         </div>
         <div item-end class="price_box">
-          <h4 class="big-text">${{summaryData.amount?summaryData.amount:''}}</h4>
+          <h4 class="big-text">£{{summaryData.amount?summaryData.amount:''}}</h4>
         </div>
       </ion-item>
-      <ion-item  class="round_bg transparent">
+      <ion-item  class="round_bg transparent" *ngIf="userData">
         <h2>Your Car Details</h2>
         <div margin-left>
           <p>Make : {{userData.make?userData.make:''}}</p>
@@ -71,7 +71,11 @@
       </ion-item>
     </ion-card>
   </ion-list>
-  <div>
+  <div *ngIf="userData">
     <button ion-button full margin-bottom class="purple_bg" (click)="sendRequest()">Send request</button>
+  </div>
+
+  <div style="margin: 38% 0 0 0;" *ngIf="!userData">
+    <button ion-button full margin-bottom class="purple_bg" (click)="goLogin()">Login</button>
   </div>
 </ion-content>

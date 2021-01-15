@@ -1,12 +1,12 @@
 <ion-header class="top-header">
   <ion-navbar>
-    <ion-buttons no-margin left class="drover_icn">
+    <ion-buttons no-margin left class="drover_icn" *ngIf="userData">
       <button padding no-margin ion-button icon-only menuToggle>
         <!-- <ion-icon class="text-white" name="md-menu"></ion-icon> -->
         <img src="assets/img/menu_icon.png">
       </button>
     </ion-buttons>
-    <ion-buttons right class="notification_icn" (click)="notification()">
+    <ion-buttons right class="notification_icn" (click)="notification()" *ngIf="userData">
       <button ion-button icon-only light class="text-white">
         <img src="assets/img/notifications.png">
       </button>
@@ -48,7 +48,7 @@
           </ion-thumbnail>
           <div class="big-text text-black"> {{item.name}}</div>
           <div class="small-text ">Weight :{{item.weight}}</div>
-          <div class="medium-bold" item-end><h2>${{item.amount}}</h2></div>
+          <div class="medium-bold" item-end><h2>£{{item.amount}}</h2></div>
         </ion-item>
       <!--<ion-item *ngFor="let item of vehicleList" (click)="selectTruck(item)" [ngClass]="item.isSelect?'selected-bg':''" no-lines class="transparent">
         <ion-thumbnail item-start>

@@ -100,7 +100,7 @@ export class LoginPage {
     this.fcm.subscribeToTopic('marketing');
     this.fcm.getToken().then(token => {
       this.firebaseToken = token;
-      console.log('token >>>',this.firebaseToken);
+      console.log('login page token >>>',this.firebaseToken);
     });
 
     /*this.fcm.onNotification().subscribe(data => {
@@ -115,5 +115,8 @@ export class LoginPage {
       // console.log('onTokenRefresh called !!!',token);
     });
     this.fcm.unsubscribeFromTopic('marketing');
+  }
+  goCalculate(){
+    this.navCtrl.push('HomePage');
   }
 }

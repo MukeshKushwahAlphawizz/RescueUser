@@ -168,7 +168,7 @@ export class LiveTrackingPage {
     this.directionsDisplay.setMap(this.map,startMarker);
     this.directionsDisplay.setOptions({
       polylineOptions: {
-        strokeColor: '#752264'
+        strokeColor: '#f27120'
       },
       suppressMarkers: true
     });

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {AlertController, Loading, LoadingController, ToastController} from "ionic-angular";
 import {Camera} from "@ionic-native/camera";
-import {User} from "..";
+// import {User} from "..";
 import {Storage} from "@ionic/storage";
 import moment from "moment";
 
@@ -17,7 +17,7 @@ export class UtilProvider {
   toast: any;
   constructor(public http: HttpClient,public toastCtrl:ToastController,
               private loadingCtrl: LoadingController,
-              private user: User,
+              // private user: User,
               private camera: Camera, private alertCtrl: AlertController, public storage: Storage) {
   }
   presentLoading(msg) {

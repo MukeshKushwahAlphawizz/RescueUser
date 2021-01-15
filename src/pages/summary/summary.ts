@@ -74,4 +74,7 @@ export class SummaryPage {
         this.util.dismissLoader();
       })
   }
+  goLogin(){
+    this.navCtrl.setRoot('LoginPage');
+  }
 }

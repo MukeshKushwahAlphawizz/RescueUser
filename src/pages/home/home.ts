@@ -36,6 +36,7 @@ export class HomePage {
   nearbyDrivers:any=[];
   markers: any[] = [];
   mapEventTimeout: any;
+  myuserdate: any;
 
   constructor(public viewCtrl: ViewController,
               public navCtrl: NavController,
@@ -62,8 +63,13 @@ export class HomePage {
       return;
     }
     this.util.presentLoader();
+    if(this.userData){
+      this.myuserdate =this.userData.id;
+    }else{
+      this.myuserdate ='';
+    }
     let data = {
-      "user_id":this.userData.id,
+      "user_id":this.myuserdate,
       "pick_location":this.source,
       "pick_latitude":this.sourceLat,
       "pick_longitude":this.sourceLng,
@@ -73,6 +79,7 @@ export class HomePage {
     }
     this.user.sendpickupRequest(data).subscribe(res=>{
       let resp : any = res;
+      // console.log(res);
       if (resp.status){
         this.bookingId = resp.data.id;
         this.vehicleList = resp.data.vehicle_category;
@@ -107,8 +114,14 @@ export class HomePage {
   }
   confirm() {
     if (this.selectedItem.id){
+      if(this.userData){
+        this.myuserdate =this.userData.id;
+      }else{
+        this.myuserdate ='';
+      }
       let data = {
-        user_id:this.userData.id,
+        user_id:this.myuserdate,
+        // user_id:this.userData.id,
         vehicle_type:this.selectedItem.id,
         booking_id:this.bookingId,
         pick_date:"",
@@ -273,6 +286,7 @@ export class HomePage {
       animation: google.maps.Animation.DROP,
     });
     this.map.setCenter(location);
+    // console.log(marker);
     // this.markers.push(marker);
   }
   /*addMarker(){

@@ -17,7 +17,6 @@ export class PaymentPage {
   testKey = 'pk_test_51HU6ieLh9b4PD8QRemTXIzp5TidbPqNcz2E0yG9V53HVoehsrgdrT76tvta2j5uXtzqVE3KHaWdvyDRmRW56aLM700Igbn2w1a'
   stripe = Stripe(this.testKey);
   card: any;
-  paymentAmount: any = '28';
   /*payPalConfig = {
     env: 'sandbox',
     client: {
